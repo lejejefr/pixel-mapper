@@ -54,7 +54,7 @@ export class EditCanvas implements AfterViewInit {
   drawAllMap(): void{
     const map : MapData = this.editMapDataService.map();
     for(let i = 0; i < map.width - 1; i++){
-      for(let j = 0; j < map.height - j; j++){
+      for(let j = 0; j < map.height - 1; j++){
         this.redrawTile(i, j, this.layer());
       }
     }
