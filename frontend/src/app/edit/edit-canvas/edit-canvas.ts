@@ -20,6 +20,7 @@ import { Layer, MapData } from '../../models/map-data';
 export class EditCanvas implements AfterViewInit {
   readonly editMapDataService = inject(EditMapDataService);
   readonly layer = input<Layer>("terrain");
+  readonly drawMode = input<"link" | "no-link">("link");
 
   @ViewChild('canvasRef', { static: true })
   canvasRef!: ElementRef<HTMLCanvasElement>;
@@ -161,8 +162,17 @@ export class EditCanvas implements AfterViewInit {
       {x: x, y: y + 1},
       {x: x + 1, y: y + 1},
     ].forEach(cell => {
-      if(map.getCell(cell.x,cell.y,layer) >= value){
-        k += power
+      switch(this.drawMode()){
+        case "link":
+          if(map.getCell(cell.x,cell.y,layer) >= value){
+            k += power
+          }
+          break;
+        case "no-link":
+          if(map.getCell(cell.x,cell.y,layer) === value){
+            k += power
+          }
+          break;
       }
       power *= 2
     });

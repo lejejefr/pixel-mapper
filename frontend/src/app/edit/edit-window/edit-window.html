@@ -19,6 +19,7 @@
   <app-edit-canvas
   class="edit-canvas"
   [layer]="'terrain'"
+  [drawMode]="'link'"
   [style.transform]="
     'translate(' + controller.camLocation().x + 'px,' +
                   controller.camLocation().y + 'px) scale(' +
@@ -28,6 +29,7 @@
   <app-edit-canvas
   class="edit-canvas"
   [layer]="'vegetation'"
+  [drawMode]="'no-link'"
   [style.transform]="
     'translate(' + controller.camLocation().x + 'px,' +
                   controller.camLocation().y + 'px) scale(' +
@@ -37,6 +39,7 @@
   <app-edit-canvas
   class="edit-canvas"
   [layer]="'roads'"
+  [drawMode]="'no-link'"
   [style.transform]="
     'translate(' + controller.camLocation().x + 'px,' +
                   controller.camLocation().y + 'px) scale(' +
@@ -46,6 +49,7 @@
   <app-edit-canvas
   class="edit-canvas"
   [layer]="'cities'"
+  [drawMode]="'no-link'"
   [style.transform]="
     'translate(' + controller.camLocation().x + 'px,' +
                   controller.camLocation().y + 'px) scale(' +
