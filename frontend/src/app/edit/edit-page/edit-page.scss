@@ -1,16 +1,23 @@
-:host { display: block; }
+@use '../../../styles' as t;
+
+:host {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  background: t.$bg-page;
+  color: t.$text-primary;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
 
 .edit-page {
   display: grid;
-  grid-template-rows: 72px minmax(0, 1fr);
-  height: 100vh;
-  background-color: blue;
+  grid-template-rows: 64px minmax(0, 1fr);
+  height: 100%;
 }
 
 .edit-content {
   display: grid;
-  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-columns: 64px minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr);
   min-height: 0;
-  background-color: rgb(28, 110, 83);
 }

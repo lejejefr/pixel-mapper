@@ -1,32 +1,71 @@
+@use '../../../styles' as t;
+
 :host {
   display: block;
-  width: 100%;
   height: 100%;
-  min-width: 0;
-  overflow-x: auto;
-  background-color: darkgray;
+  background: t.$bg-page;
+  border-bottom: 1px solid t.$border;
 }
 
 .edit-header {
   display: flex;
   align-items: center;
+  gap: 0.25rem;
   height: 100%;
+  padding: 0 1rem;
 }
 
 .edit-header-icon {
-  display: block;
-  align-content: center;
-  width: 72px;
-  height: 72px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: none;
-  background-color: transparent;
+  background: transparent;
+  border-radius: 8px;
   cursor: pointer;
-}
+  transition: background-color 120ms ease;
 
-.edit-header-icon img {
-  display: block;
-  width: 70%;
-  height: 70%;
-  object-fit: contain;   // garde les proportions dans un carré 72x72
+  img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: opacity 120ms ease;
+  }
+
+  &:hover {
+    background: t.$bg-surface-hover;
+    img { opacity: 1; }
+  }
+
+  &:focus-visible {
+    outline: 2px solid t.$accent-hover;
+    outline-offset: 2px;
+  }
+
+  // Bouton "quitter" isolé à gauche avec un léger écart
+  &:first-child {
+    margin-right: 0.5rem;
+  }
+
+  &.active {
+  background: t.$accent-soft;
+  img { opacity: 1; }
+  // petit point violet en bas
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: t.$accent-hover;
+  }
+}
 }

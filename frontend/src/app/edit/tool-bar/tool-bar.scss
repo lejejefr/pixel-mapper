@@ -1,22 +1,63 @@
+@use '../../../styles' as t;
+
 :host {
   display: block;
+  height: 100%;
   min-height: 0;
+  background: t.$bg-page;
+  border-right: 1px solid t.$border;
   overflow-y: auto;
   overflow-x: hidden;
-  background-color: rgb(212, 28, 28);
+  box-sizing: border-box;
+
+  // scrollbar invisible mais molette active
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.tool-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0;
 }
 
 .tool-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 48px;
   height: 48px;
-  background-color: transparent;
-  border-color: transparent;
-}
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
 
+  img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: opacity 120ms ease;
+  }
 
-.tool-icon img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;   // garde les proportions dans un carré 72x72
+  &:hover {
+    background: t.$bg-surface-hover;
+    img { opacity: 1; }
+  }
+
+  &:focus-visible {
+    outline: 2px solid t.$accent-hover;
+    outline-offset: 2px;
+  }
+
+  &.selected {
+    background: t.$accent-soft;
+    border-color: t.$accent;
+
+    img { opacity: 1; }
+  }
 }

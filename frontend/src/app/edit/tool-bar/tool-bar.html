@@ -3,36 +3,42 @@
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 0"
     (click)="onToolSelected(0)">
       <img src="/ocean-icon.svg" alt="OCEAN" />
     </button>
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 1"
     (click)="onToolSelected(1)">
       <img src="/sea-icon.svg" alt="SEA" />
     </button>
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 2"
     (click)="onToolSelected(2)">
       <img src="/desert-icon.svg" alt="DESERT" />
     </button>
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 3"
     (click)="onToolSelected(3)">
       <img src="/grassland-icon.svg" alt="GRASSLAND" />
     </button>
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 4"
     (click)="onToolSelected(4)">
       <img src="/snowplains-icon.svg" alt="SNOWPLAINS" />
     </button>
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 5"
     (click)="onToolSelected(5)">
       <img src="/montain-icon.svg" alt="MONTAIN" />
     </button>
@@ -41,18 +47,21 @@
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 0"
     (click)="onToolSelected(0)">
       <img src="/erase-icon.svg" alt="ERASER" />
     </button>
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 1"
     (click)="onToolSelected(1)">
       <img src="/forest-icon.svg" alt="FOREST" />
     </button>
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 2"
     (click)="onToolSelected(2)">
       <img src="/montain-chains-icon.svg" alt="MONTAIN CHAINS" />
     </button>
@@ -61,28 +70,33 @@
     <button
     type="button"
     class="tool-icon" aria-label=""
+  [class.selected]="editWindowControlService.selectedValue() === 0"
+
     (click)="onToolSelected(0)">
       <img src="/erase-icon.svg" alt="ERASER" />
     </button>
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 1"
     (click)="onToolSelected(1)">
-      <img src="/draw-icon.svg" alt="FOREST" />
+      <img src="/draw-icon.svg" alt="DRAW" />
     </button>
   }
   @if(editWindowControlService.selectedLayer() === "cities"){
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 0"
     (click)="onToolSelected(0)">
       <img src="/erase-icon.svg" alt="ERASER" />
     </button>
     <button
     type="button"
     class="tool-icon" aria-label=""
+    [class.selected]="editWindowControlService.selectedValue() === 1"
     (click)="onToolSelected(1)">
-      <img src="/draw-icon.svg" alt="FOREST" />
+      <img src="/draw-icon.svg" alt="DRAW" />
     </button>
   }
 </div>

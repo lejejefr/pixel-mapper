@@ -48,6 +48,8 @@ export class EditCanvas implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    const ctx = this.canvasRef.nativeElement.getContext('2d');
+    if (ctx) ctx.imageSmoothingEnabled = false;
     this.drawAllMap();
   }
 

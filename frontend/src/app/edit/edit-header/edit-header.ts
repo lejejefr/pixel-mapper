@@ -16,14 +16,18 @@ export class EditHeader {
 
   onTerrainPressed(): void{
     this.editWindowControlService.selectedLayer.set("terrain");
+    this.editWindowControlService.selectedValue.set(0);
   }
   onVegetationPressed(): void{
     this.editWindowControlService.selectedLayer.set("vegetation");
+    this.editWindowControlService.selectedValue.set(0);
   }
   onPathPressed(): void{
     this.editWindowControlService.selectedLayer.set("roads");
+    this.editWindowControlService.selectedValue.set(0);
   }
   onCityPressed(): void{
     this.editWindowControlService.selectedLayer.set("cities");
+    this.editWindowControlService.selectedValue.set(0);
   }
 }
