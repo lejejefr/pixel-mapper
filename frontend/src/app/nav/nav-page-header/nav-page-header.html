@@ -1,3 +1,21 @@
 <div class="nav-page-header">
+  <button
+  class="nav-header-icon"
+  (click)="onCreateClick()">
+    <img src="create-icon.svg">
+  </button>
+  @if(navService.selectedId() != null){
+    <div class=nav-header-icon></div>
+  <button
+  class="nav-header-icon"
+  (click)="onEditClick()">
+    <img src="edit-icon.svg">
+  </button>
+  <button
+  class="nav-header-icon"
+  (click)="onParamClick()">
+    <img src="change-parameters.svg">
+  </button>
+  }
 
 </div>

@@ -1,6 +1,32 @@
-.nav-page-header{
+:host {
   display: block;
-  background-color: black;
   width: 100%;
   height: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  background-color: darkgray;
+}
+
+.nav-page-header {
+  display: flex;
+  align-items: center;
+  background-color: black;
+  height: 100%;
+}
+
+.nav-header-icon {
+  display: block;
+  align-content: center;
+  width: 72px;
+  height: 72px;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.nav-header-icon img {
+  display: block;
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
 }
