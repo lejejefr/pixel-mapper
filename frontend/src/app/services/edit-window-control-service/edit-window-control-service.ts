@@ -1,6 +1,7 @@
-import { Service, signal, computed } from '@angular/core';
+import { Service, signal, computed, inject } from '@angular/core';
 import { min } from 'rxjs';
 import { Layer } from '../../models/map-data';
+import { Router } from '@angular/router';
 
 export type Location = {
   x: number;
@@ -45,6 +46,8 @@ export class EditWindowControlService {
   //pen
   readonly selectedLayer = signal<Layer>("terrain");
   readonly selectedValue = signal<number>(0);
+
+  private router = inject(Router);
 
   onMouseDown(event : MouseEvent): void{
       switch(event.button){
@@ -106,5 +109,9 @@ export class EditWindowControlService {
       this.zoomValue.set(Math.min(this.zoomValue() + this.deltaZoom, this.maxZoom));
 
     }
+  }
+
+  onExitPressed(): void{
+    this.router.navigateByUrl("nav-page");
   }
 }

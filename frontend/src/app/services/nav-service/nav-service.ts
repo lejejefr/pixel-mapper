@@ -1,6 +1,8 @@
+import { EditMapDataService } from './../edit-map-data-service/edit-map-data-service';
 import { computed, inject, Service, signal } from '@angular/core';
 import { NavListElementProps } from '../../models/nav-list-element-props';
 import { MapListService } from '../map-list-service/map-list-service';
+import { Router } from '@angular/router';
 
 @Service()
 export class NavService {
@@ -9,12 +11,15 @@ export class NavService {
   public readonly selectedId = signal<string | null>(null);
   public readonly textSearch = signal<string>("");
 
+  readonly router = inject(Router);
+  readonly editMapDataService = inject(EditMapDataService);
+  public mapListService = inject(MapListService);
+
   public readonly filteredElements = computed(() => {
     const text = this.textSearch().trim().toLowerCase();
     return this.navListElementProps.filter(e => e.title.toLowerCase().includes(text));
   });
 
-  public mapListService = inject(MapListService);
 
   constructor() {
     this.refreshList();
@@ -49,7 +54,16 @@ export class NavService {
   }
 
   startEditing(): void{
-
+    if(this.selectedId() === null){
+      console.warn("no id selected");
+      return;
+    }
+    for(let mapData of this.navListElementProps){
+      if (mapData.mapId === this.selectedId()){
+        this.editMapDataService.loadMap(this.mapListService.getMapData(mapData));
+        this.router.navigateByUrl("edit-page");
+      }
+    }
   }
 
   refreshList(): void{

@@ -13,7 +13,7 @@ export class NavPageHeader {
 
   }
   onEditClick(): void{
-
+    this.navService.startEditing();
   }
   onParamClick(): void{
 

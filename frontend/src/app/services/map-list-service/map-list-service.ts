@@ -1,5 +1,6 @@
+import { NavListElementProps } from './../../models/nav-list-element-props';
 import { Service } from '@angular/core';
-import { NavListElementProps } from '../../models/nav-list-element-props';
+import { MapData } from '../../models/map-data';
 
 @Service()
 export class MapListService {
@@ -42,5 +43,16 @@ export class MapListService {
     ),
 
   ];
+  }
+
+  getMapData(props : NavListElementProps): MapData{
+    return new MapData(
+      props.mapId,
+      props.createdAt,
+      props.lastUpdate,
+      props.title,
+      props.description,
+      32,32
+    );
   }
 }
