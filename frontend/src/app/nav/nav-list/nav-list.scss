@@ -1,7 +1,24 @@
-.nav-list{
+@use '../../../styles' as t;
+
+:host {
   display: block;
-  background-color: lightgreen;
-  width: 100%;
-  height: 100%;
+  min-height: 0;
   overflow-y: auto;
+  overflow-x: hidden;
+  background: t.$bg-page;
+  padding: 0.75rem;
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.nav-list-empty {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: t.$text-secondary;
+  font-size: 0.9rem;
 }

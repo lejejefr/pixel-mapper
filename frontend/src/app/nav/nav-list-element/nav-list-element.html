@@ -1,15 +1,12 @@
 <button
-class="nav-list-element"
-(click)="onClick()"
+  type="button"
+  class="nav-list-element"
+  [class.selected]="isSelected()"
+  (click)="onClick()"
 >
-  @if(isSelected()){
-    <div class="nav-list-base-text">> {{props.title}}</div>
-  }
-  @else{
-    <div class="nav-list-base-text" > {{props.title}}</div>
-  }
+  <div class="nav-list-element-title">{{ props.title }}</div>
   <div class="nav-list-element-dates">
-    <div class="nav-list-base-text">{{props.createdAt | date: "dd/MM/yyyy - HH:mm:ss"}}</div>
-    <div class="nav-list-base-text">{{props.lastUpdate | date: "dd/MM/yyyy - HH:mm:ss"}}</div>
+    <span>{{ props.createdAt | date: "dd/MM/yyyy - HH:mm" }}</span>
+    <span>{{ props.lastUpdate | date: "dd/MM/yyyy - HH:mm" }}</span>
   </div>
 </button>

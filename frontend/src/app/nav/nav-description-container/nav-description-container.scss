@@ -1,6 +1,35 @@
-.nav-description-container{
-  display:block;
-  background-color: aqua;
-  width: 100%;
-  height: 100%;
+@use '../../../styles' as t;
+
+:host {
+  display: block;
+  margin: 0 0 0.5rem;
+  animation: reveal 160ms ease-out;
+}
+
+.nav-description-container {
+  padding: 1rem 1.25rem;
+  background: t.$bg-surface-active;
+  border: 1px solid t.$border;
+  border-left: 3px solid t.$accent;
+  border-radius: 0 10px 10px 0;
+  color: t.$text-primary;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-break: break-word;
+
+  &:empty::before {
+    content: 'Aucune description.';
+    color: t.$text-secondary;
+    font-style: italic;
+  }
+}
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :host { animation: none; }
 }

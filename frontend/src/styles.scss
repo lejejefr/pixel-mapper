@@ -7,3 +7,18 @@ html, body {
 *, *::before, *::after {
   box-sizing: border-box;
 }
+
+
+// palette
+$bg-page: #0d0d10;
+$bg-surface: #17171c;
+$bg-surface-hover: #1f1f26;
+$bg-surface-active: #26262e;
+$border: #2a2a33;
+$text-primary: #f2f2f5;
+$text-secondary: #a8a8b3;
+$accent: #8b5cf6;
+$accent-hover: #a78bfa;
+$accent-text-on: #0d0d10;
+$accent-soft: rgba(139, 92, 246, 0.12);
+$error: #f87171;
