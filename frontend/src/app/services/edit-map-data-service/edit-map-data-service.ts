@@ -1,5 +1,5 @@
 import { computed, effect, inject, Service, signal } from '@angular/core';
-import { Layer, MapData } from '../../models/map-data';
+import { Layer, MapData, MapDataProps } from '../../models/map-data';
 import { EditWindowControlService } from '../edit-window-control-service/edit-window-control-service';
 
 export const TILE_SIZE = {
@@ -13,19 +13,19 @@ export class EditMapDataService {
   readonly windowControllerService = inject(EditWindowControlService);
 
   readonly map = signal<MapData>(new MapData(
-    crypto.randomUUID(),
+    new MapDataProps(crypto.randomUUID(),
     new Date(Date.now()),
     new Date(Date.now()),
     "title",
     "description",
     32,32
-  ));
+  )));
   readonly lastChange = signal<{ x: number, y: number, layer: Layer, } | null>(null);
 
   readonly canvasSize = computed<{width: number, height: number}>(() => {
     return {
-      width: TILE_SIZE.width * (this.map().width - 1),
-      height: TILE_SIZE.height * (this.map().height - 1),
+      width: TILE_SIZE.width * (this.map().props.width - 1),
+      height: TILE_SIZE.height * (this.map().props.height - 1),
     };
   });
 
