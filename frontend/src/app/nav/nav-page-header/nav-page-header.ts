@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NavService } from '../../services/nav-service/nav-service';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [],
@@ -9,8 +10,9 @@ import { NavService } from '../../services/nav-service/nav-service';
 })
 export class NavPageHeader {
   readonly navService = inject(NavService);
+  readonly router = inject(Router);
   onCreateClick(): void{
-
+    this.router.navigateByUrl('nav-page/create');
   }
   onEditClick(): void{
     this.navService.startEditing();
