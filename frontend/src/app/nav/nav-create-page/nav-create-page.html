@@ -1,0 +1,54 @@
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <div>Crée une nouvelle map</div>
+
+  <div>
+    <label for="title">Titre</label>
+    <textarea
+      id="title"
+      name="title"
+      placeholder="Titre..."
+      maxlength="128"
+      [(ngModel)]="title"
+      required
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      name="description"
+      placeholder="Description..."
+      maxlength="512"
+      [(ngModel)]="description"
+    ></textarea>
+  </div>
+
+  <div>
+    <label for="width">Largeur</label>
+    <input
+      id="width"
+      name="width"
+      type="number"
+      min="1"
+      max="999"
+      step="1"
+      [(ngModel)]="width"
+      required
+    />
+
+    <label for="height">Hauteur</label>
+    <input
+      id="height"
+      name="height"
+      type="number"
+      min="1"
+      max="999"
+      step="1"
+      [(ngModel)]="height"
+      required
+    />
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Commencer à éditer</button>
+</form>

@@ -3,6 +3,7 @@ import { computed, inject, Service, signal } from '@angular/core';
 import { NavListElementProps } from '../../models/nav-list-element-props';
 import { MapListService } from '../map-list-service/map-list-service';
 import { Router } from '@angular/router';
+import { CreateMapRequest } from '../../models/create-request';
 
 @Service()
 export class NavService {
@@ -41,8 +42,10 @@ export class NavService {
 
   }
 
-  create(): void{
-
+  create(request : CreateMapRequest): void{
+    const id = this.mapListService.createMapData(request);
+    this.select(id);
+    this.startEditing();
   }
 
   duplicate(): void{

@@ -6,8 +6,6 @@ import { EditPage } from './edit/edit-page/edit-page';
 @Component({
   imports: [
     RouterOutlet,
-    NavPage,
-    EditPage
   ],
   selector: 'app-root',
   styleUrl: './app.scss',
