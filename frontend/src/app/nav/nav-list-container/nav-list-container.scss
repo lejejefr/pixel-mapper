@@ -1,9 +1,15 @@
 @use '../../../styles' as t;
 
 :host {
-  display: grid;
-  grid-template-rows: 1fr 64px;
+  display: block;
   min-height: 0;
   height: 100%;
   border-right: 1px solid t.$border;
+}
+
+.nav-list-container {
+  display: grid;
+  grid-template-rows: 1fr 56px;
+  height: 100%;
+  min-height: 0;
 }

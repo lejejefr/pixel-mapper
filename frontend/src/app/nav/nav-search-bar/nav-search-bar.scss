@@ -5,9 +5,11 @@
   height: 100%;
   border-top: 1px solid t.$border;
   background: t.$bg-page;
+  box-sizing: border-box;
 }
 
 .nav-search-bar {
+  display: block;
   width: 100%;
   height: 100%;
   padding: 0 1rem;
@@ -24,7 +26,6 @@
   }
 
   &:focus-visible {
-    // pas de ring sur input sans bordure : on l'indique autrement
     background: t.$bg-surface;
   }
 }
