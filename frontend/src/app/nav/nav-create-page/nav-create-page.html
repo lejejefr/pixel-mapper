@@ -1,54 +1,60 @@
 <form (ngSubmit)="onSubmit()" #form="ngForm">
-  <div>Crée une nouvelle map</div>
+  <h1>Créer une nouvelle map</h1>
 
-  <div>
+  <div class="field">
     <label for="title">Titre</label>
     <textarea
       id="title"
       name="title"
-      placeholder="Titre..."
+      placeholder="Titre…"
       maxlength="128"
       [(ngModel)]="title"
       required
     ></textarea>
   </div>
 
-  <div>
+  <div class="field">
     <label for="description">Description</label>
     <textarea
       id="description"
       name="description"
-      placeholder="Description..."
+      placeholder="Description…"
       maxlength="512"
       [(ngModel)]="description"
     ></textarea>
   </div>
 
-  <div>
-    <label for="width">Largeur</label>
-    <input
-      id="width"
-      name="width"
-      type="number"
-      min="1"
-      max="999"
-      step="1"
-      [(ngModel)]="width"
-      required
-    />
+  <div class="dimensions">
+    <div class="field">
+      <label for="width">Largeur</label>
+      <input
+        id="width"
+        name="width"
+        type="number"
+        min="1"
+        max="999"
+        step="1"
+        [(ngModel)]="width"
+        required
+      />
+    </div>
 
-    <label for="height">Hauteur</label>
-    <input
-      id="height"
-      name="height"
-      type="number"
-      min="1"
-      max="999"
-      step="1"
-      [(ngModel)]="height"
-      required
-    />
+    <div class="field">
+      <label for="height">Hauteur</label>
+      <input
+        id="height"
+        name="height"
+        type="number"
+        min="1"
+        max="999"
+        step="1"
+        [(ngModel)]="height"
+        required
+      />
+    </div>
   </div>
 
-  <button type="submit" [disabled]="form.invalid">Commencer à éditer</button>
+  <button type="submit" [disabled]="form.invalid">
+    Commencer à éditer
+  </button>
 </form>

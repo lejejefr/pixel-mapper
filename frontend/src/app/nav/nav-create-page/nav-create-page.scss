@@ -1,0 +1,144 @@
+// Palette
+$bg-page: #0d0d10;       // fond général (noir légèrement bleuté)
+$bg-surface: #17171c;    // surface des champs
+$bg-surface-hover: #1f1f26;
+$border: #2a2a33;        // bordures discrètes
+$text-primary: #f2f2f5;  // texte principal — contraste ~15:1 sur $bg-page ✅
+$text-secondary: #a8a8b3;// texte secondaire — contraste ~7:1 ✅
+$accent: #8b5cf6;        // violet
+$accent-hover: #a78bfa;  // violet clair
+$accent-text-on: #0d0d10;// texte sur bouton accentué (noir) ✅
+$error: #f87171;
+
+:host {
+  display: block;
+  min-height: 100%;
+  background: $bg-page;
+  color: $text-primary;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+form {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+h1, .form-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: $text-primary;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: $text-secondary;
+    letter-spacing: 0.01em;
+  }
+}
+
+.dimensions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+textarea,
+input[type="number"] {
+  width: 100%;
+  box-sizing: border-box;
+  background: $bg-surface;
+  color: $text-primary;
+  border: 1px solid $border;
+  border-radius: 8px;
+  padding: 0.75rem 0.875rem;
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  outline: none;
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+
+  &::placeholder {
+    color: darken($text-secondary, 15%);
+    opacity: 1;
+  }
+
+  &:hover {
+    background: $bg-surface-hover;
+  }
+
+  &:focus-visible {
+    border-color: $accent;
+    box-shadow: 0 0 0 3px rgba($accent, 0.25);
+    background: $bg-surface-hover;
+  }
+
+  &:invalid:not(:placeholder-shown) {
+    border-color: $error;
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 96px;
+
+  // le champ description est plus grand
+  &#description {
+    min-height: 128px;
+  }
+}
+
+// Retirer les flèches des inputs number (Chromium)
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+button[type="submit"] {
+  margin-top: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: $accent-text-on;
+  background: $accent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 120ms ease, transform 60ms ease;
+
+  &:hover:not(:disabled) {
+    background: $accent-hover;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $accent-hover;
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    background: $border;
+    color: darken($text-secondary, 20%);
+    cursor: not-allowed;
+  }
+}
