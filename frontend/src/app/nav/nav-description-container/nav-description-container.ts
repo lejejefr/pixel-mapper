@@ -14,7 +14,7 @@ export class NavDescriptionContainer {
   protected readonly selectedDescription = computed(
     () => {
       const id = this.nav.selectedId();
-      for(let navListElementProps of this.nav.navListElementProps){
+      for(let navListElementProps of this.nav.filteredElements()){
         if(navListElementProps.mapId == id){
           return navListElementProps.description;
         };

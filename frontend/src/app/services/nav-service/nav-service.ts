@@ -8,8 +8,6 @@ import { MapDataProps } from '../../models/map-data';
 
 @Service()
 export class NavService {
-  public navListElementProps : MapDataProps[] = [];
-
   public readonly selectedId = signal<string | null>(null);
   public readonly textSearch = signal<string>("");
 
@@ -19,7 +17,7 @@ export class NavService {
 
   public readonly filteredElements = computed(() => {
     const text = this.textSearch().trim().toLowerCase();
-    return this.navListElementProps.filter(e => e.title.toLowerCase().includes(text));
+    return this.mapListService.mapList().filter(e => e.title.toLowerCase().includes(text));
   });
 
 
@@ -62,7 +60,7 @@ export class NavService {
       console.warn("no id selected");
       return;
     }
-    for(let mapData of this.navListElementProps){
+    for(let mapData of this.mapListService.mapList()){
       if (mapData.mapId === this.selectedId()){
         this.editMapDataService.loadMap(this.mapListService.getMapData(mapData));
         this.router.navigateByUrl("edit-page");
@@ -71,7 +69,7 @@ export class NavService {
   }
 
   refreshList(): void{
-    this.navListElementProps = this.mapListService.getMapList();
+    this.mapListService.refresh();
   }
 
 }

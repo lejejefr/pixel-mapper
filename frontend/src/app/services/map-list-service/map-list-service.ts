@@ -1,11 +1,11 @@
 import { CreateMapRequest } from './../../models/create-request';
 import { NavListElementProps } from './../../models/nav-list-element-props';
-import { Service } from '@angular/core';
+import { Service, signal } from '@angular/core';
 import { MapData, MapDataProps } from '../../models/map-data';
 
 @Service()
 export class MapListService {
-  private mapList: MapDataProps[] = [
+  readonly mapList = signal<MapDataProps[]>([
     new MapDataProps(
       crypto.randomUUID(),
       new Date(Date.now()),
@@ -47,10 +47,10 @@ export class MapListService {
       32,32,
     ),
 
-  ];
+  ]);
 
-  getMapList(): MapDataProps[]{
-    return this.mapList;
+  refresh(): void{
+
   }
 
   getMapData(props : MapDataProps): MapData{
@@ -63,7 +63,8 @@ export class MapListService {
     const now : Date = new Date(Date.now());
     const mapId : string = crypto.randomUUID();
 
-    this.mapList.push(new MapDataProps(
+    this.mapList.update(mapList => {
+      mapList.push(new MapDataProps(
       mapId,
       now,
       now,
@@ -72,6 +73,8 @@ export class MapListService {
       request.width,
       request.height,
     ))
+    return mapList;
+  });
 
     return mapId;
   }
