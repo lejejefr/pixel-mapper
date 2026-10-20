@@ -5,3 +5,8 @@
   width: 100%;
   height: 100%;
 }
+:host {
+  display: block;
+  min-height: 0;      // indispensable pour un élément de grid : sinon il grandit avec son contenu
+  overflow-y: auto;
+}
