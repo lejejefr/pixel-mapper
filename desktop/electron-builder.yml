@@ -1,0 +1,31 @@
+appId: com.pixelmapper.app
+productName: PixelMapper
+directories:
+  output: dist
+files:
+  - src/**/*
+  - package.json
+extraResources:
+  - from: build/jre
+    to: jre
+  - from: build/backend
+    to: backend
+win:
+  target:
+    - nsis
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+mac:
+  category: public.app-category.productivity
+  target:
+    - dmg
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+linux:
+  target:
+    - AppImage
+    - deb
+  category: Utility

@@ -1,8 +1,8 @@
 {
-  "name": "desktop",
-  "productName": "App",
+  "name": "pixel-mapper-desktop",
+  "productName": "PixelMapper",
   "version": "0.1.0",
-  "description": "Application desktop MonApp",
+  "description": "Application desktop PixelMapper",
   "author": "Leo AGBENU <leo.agbenu@gmail.com>",
   "homepage": "https://example.com",
   "license": "UNLICENSED",
