@@ -1,0 +1,22 @@
+{
+  "name": "desktop",
+  "productName": "App",
+  "version": "0.1.0",
+  "description": "Application desktop MonApp",
+  "author": "Leo AGBENU <leo.agbenu@gmail.com>",
+  "homepage": "https://example.com",
+  "license": "UNLICENSED",
+  "private": true,
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "start:wsl": "electron . --no-sandbox",
+    "prepare:backend": "node scripts/copy-backend.js",
+    "jre": "node scripts/build-jre.js",
+    "dist": "npm run prepare:backend && npm run jre && electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^44.9.0",
+    "electron-builder": "^26.15.3"
+  }
+}
