@@ -34,11 +34,14 @@ export class NavService {
     ),
   ];
 
-  public readonly selectedId = signal<String | null>(null);
+  public readonly selectedId = signal<string | null>(null);
 
-  select(elementId: String): void {
+  select(elementId: string): void {
     this.selectedId.update(id => (id === elementId ? null : elementId));
   }
+
+
+
   onInit(): void{
 
   }

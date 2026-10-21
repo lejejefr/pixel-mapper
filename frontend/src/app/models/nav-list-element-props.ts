@@ -1,10 +1,10 @@
 export class NavListElementProps{
   constructor(
-    public mapId : String,
+    public mapId : string,
     public createdAt : Date,
     public lastUpdate : Date,
-    public title : String,
-    public description : String,
+    public title : string,
+    public description : string,
   ){
 
   }
