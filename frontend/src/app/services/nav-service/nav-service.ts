@@ -35,12 +35,15 @@ export class NavService {
   ];
 
   public readonly selectedId = signal<string | null>(null);
+  public readonly textSearch = signal<string>("");
 
   select(elementId: string): void {
     this.selectedId.update(id => (id === elementId ? null : elementId));
   }
 
-
+  search(newTextSearch: string): void{
+    this.textSearch.update(_textSearch => newTextSearch);
+  }
 
   onInit(): void{
 
