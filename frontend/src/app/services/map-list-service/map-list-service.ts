@@ -6,35 +6,35 @@ export class MapListService {
   getMapList(): NavListElementProps[]{
     return [
     new NavListElementProps(
-      "1",
+      crypto.randomUUID(),
       new Date(Date.now()),
       new Date(Date.now()),
       "Map A",
       "some island"
     ),
     new NavListElementProps(
-      "2",
+      crypto.randomUUID(),
       new Date(Date.now()),
       new Date(Date.now()),
       "Map B",
       "some forests"
     ),
     new NavListElementProps(
-      "3",
+      crypto.randomUUID(),
       new Date(Date.now()),
       new Date(Date.now()),
       "Map C",
       "some montains"
     ),
     new NavListElementProps(
-      "4",
+      crypto.randomUUID(),
       new Date(Date.now()),
       new Date(Date.now()),
       "Map D",
       "some caves"
     ),
     new NavListElementProps(
-      "5",
+      crypto.randomUUID(),
       new Date(Date.now()),
       new Date(Date.now()),
       "The best map",
