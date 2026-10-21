@@ -1,5 +1,5 @@
 <div class="nav-list">
-  @for(element of nav.navListElementProps; track element.mapId){
+  @for(element of nav.filteredElements(); track element.mapId){
     <app-nav-list-element [props]="element"/>
   }
 </div>

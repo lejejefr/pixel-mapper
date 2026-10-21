@@ -1,4 +1,4 @@
-import { Service, signal } from '@angular/core';
+import { computed, Service, signal } from '@angular/core';
 import { NavListElementProps } from '../../models/nav-list-element-props';
 
 @Service()
@@ -32,10 +32,23 @@ export class NavService {
       "Map D",
       "some caves"
     ),
+    new NavListElementProps(
+      "5",
+      new Date(Date.now()),
+      new Date(Date.now()),
+      "The best map",
+      "I like this map, very good, very pretty map. I like to call it the great map you know."
+    ),
+
   ];
 
   public readonly selectedId = signal<string | null>(null);
   public readonly textSearch = signal<string>("");
+
+  public readonly filteredElements = computed(() => {
+    const text = this.textSearch().trim().toLowerCase();
+    return this.navListElementProps.filter(e => e.title.toLowerCase().includes(text));
+  });
 
   select(elementId: string): void {
     this.selectedId.update(id => (id === elementId ? null : elementId));
