@@ -1,46 +1,10 @@
-import { computed, Service, signal } from '@angular/core';
+import { computed, inject, Service, signal } from '@angular/core';
 import { NavListElementProps } from '../../models/nav-list-element-props';
+import { MapListService } from '../map-list-service/map-list-service';
 
 @Service()
 export class NavService {
-  public navListElementProps : NavListElementProps[] = [
-    new NavListElementProps(
-      "1",
-      new Date(Date.now()),
-      new Date(Date.now()),
-      "Map A",
-      "some island"
-    ),
-    new NavListElementProps(
-      "2",
-      new Date(Date.now()),
-      new Date(Date.now()),
-      "Map B",
-      "some forests"
-    ),
-    new NavListElementProps(
-      "3",
-      new Date(Date.now()),
-      new Date(Date.now()),
-      "Map C",
-      "some montains"
-    ),
-    new NavListElementProps(
-      "4",
-      new Date(Date.now()),
-      new Date(Date.now()),
-      "Map D",
-      "some caves"
-    ),
-    new NavListElementProps(
-      "5",
-      new Date(Date.now()),
-      new Date(Date.now()),
-      "The best map",
-      "I like this map, very good, very pretty map. I like to call it the great map you know."
-    ),
-
-  ];
+  public navListElementProps : NavListElementProps[] = [];
 
   public readonly selectedId = signal<string | null>(null);
   public readonly textSearch = signal<string>("");
@@ -49,6 +13,12 @@ export class NavService {
     const text = this.textSearch().trim().toLowerCase();
     return this.navListElementProps.filter(e => e.title.toLowerCase().includes(text));
   });
+
+  public mapListService = inject(MapListService);
+
+  constructor() {
+    this.refreshList();
+  }
 
   select(elementId: string): void {
     this.selectedId.update(id => (id === elementId ? null : elementId));
@@ -83,7 +53,7 @@ export class NavService {
   }
 
   refreshList(): void{
-
+    this.navListElementProps = this.mapListService.getMapList();
   }
 
 }
