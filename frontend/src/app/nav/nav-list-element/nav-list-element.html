@@ -1,1 +1,15 @@
-<div class="nav-list-element">nav-list-element works!</div>
+<button
+class="nav-list-element"
+(click)="props.toggle()"
+>
+  @if(props.isToggled){
+    <div class="nav-list-base-text">> {{props.title}}</div>
+  }
+  @else{
+    <div class="nav-list-base-text" > {{props.title}}</div>
+  }
+  <div class="nav-list-element-dates">
+    <div class="nav-list-base-text">{{props.createdAt | date: "dd/MM/yyyy - HH:mm:ss"}}</div>
+    <div class="nav-list-base-text">{{props.lastUpdate | date: "dd/MM/yyyy - HH:mm:ss"}}</div>
+  </div>
+</button>
