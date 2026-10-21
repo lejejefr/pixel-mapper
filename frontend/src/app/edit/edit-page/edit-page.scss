@@ -1,0 +1,10 @@
+.edit-page{
+  display: grid;
+  grid-template-columns: 48px calc(100% - 48px);
+  background-color: rgb(28, 110, 83);
+  height: 100vh;
+  width: 100vw;
+}
+:host{
+  display: block;
+}
