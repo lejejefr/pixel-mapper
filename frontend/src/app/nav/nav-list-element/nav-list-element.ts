@@ -1,27 +1,25 @@
-import { Component } from '@angular/core';
+import { NavService } from './../../services/nav-service/nav-service';
+import { Component, computed, inject, Injectable, Input } from '@angular/core';
 import { NavListElementProps } from '../../models/nav-list-element-props';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 
 @Component({
   imports: [
-    DatePipe
-
+    NgClass,
+    DatePipe,
   ],
   selector: 'app-nav-list-element',
   styleUrl: './nav-list-element.scss',
   templateUrl: './nav-list-element.html',
 })
 export class NavListElement {
-  private props!: NavListElementProps;
+  public nav = inject(NavService);
+  protected readonly isSelected = computed(
+    () => this.nav.selectedId() === this.props.mapId
+  );
+  @Input() public props! : NavListElementProps;
 
-  ngOnInit(): void{
-    this.props = new NavListElementProps(
-      "TEST-ID",
-      new Date(),
-      new Date(),
-      "Some title",
-      "Some description",
-      false
-    )
+  onClick(): void{
+    this.nav.select(this.props.mapId);
   }
 }

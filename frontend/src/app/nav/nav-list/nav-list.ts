@@ -1,12 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NavListElement } from '../nav-list-element/nav-list-element';
+import { NavService } from '../../services/nav-service/nav-service';
+import { NgClass } from '@angular/common';
 
 @Component({
   imports: [
+    NgClass,
     NavListElement
   ],
   selector: 'app-nav-list',
   styleUrl: './nav-list.scss',
   templateUrl: './nav-list.html',
 })
-export class NavList {}
+export class NavList {
+  public nav = inject(NavService);
+}

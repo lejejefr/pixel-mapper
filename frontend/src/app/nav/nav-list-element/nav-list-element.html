@@ -1,8 +1,8 @@
 <button
 class="nav-list-element"
-(click)="props.toggle()"
+(click)="onClick()"
 >
-  @if(props.isToggled){
+  @if(isSelected()){
     <div class="nav-list-base-text">> {{props.title}}</div>
   }
   @else{
