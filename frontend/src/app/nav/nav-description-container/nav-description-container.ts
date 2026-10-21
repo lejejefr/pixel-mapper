@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { NavListElementProps } from './../../models/nav-list-element-props';
+import { Component, computed, inject } from '@angular/core';
+import { NavService } from '../../services/nav-service/nav-service';
 
 @Component({
   imports: [],
@@ -6,4 +8,18 @@ import { Component } from '@angular/core';
   styleUrl: './nav-description-container.scss',
   templateUrl: './nav-description-container.html',
 })
-export class NavDescriptionContainer {}
+export class NavDescriptionContainer {
+  public nav = inject(NavService);
+
+  protected readonly selectedDescription = computed(
+    () => {
+      const id = this.nav.selectedId();
+      for(let navListElementProps of this.nav.navListElementProps){
+        if(navListElementProps.mapId == id){
+          return navListElementProps.description;
+        };
+      }
+      return "";
+    }
+  );
+}
