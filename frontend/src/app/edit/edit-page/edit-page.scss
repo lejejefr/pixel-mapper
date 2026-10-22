@@ -1,25 +1,16 @@
-.edit-page{
+:host { display: block; }
+
+.edit-page {
   display: grid;
-  grid-template-rows: 72px, calc(100% - 72px);
-  background-color: blue;
+  grid-template-rows: 72px minmax(0, 1fr);
   height: 100vh;
-  width: 100vw;
-}
-:host{
-  display: block;
-  min-width: 0;
+  background-color: blue;
 }
 
-.edit-content{
+.edit-content {
   display: grid;
-  grid-template-columns: 48px calc(100% - 48px);
-  grid-template-rows: 100%;
+  grid-template-columns: 48px minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  min-height: 0;
   background-color: rgb(28, 110, 83);
-  height: 100%;
-  width: 100%;
 }
-:host{
-  display: block;
-  min-width: 0;
-}
-
