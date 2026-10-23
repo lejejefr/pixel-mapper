@@ -1,3 +1,16 @@
 <div class="edit-window">
-
+  <div class="layer"
+  (mousedown)="onMouseDown($event)"
+  (mouseup)="onMouseUp($event)"
+  (mouseleave)="onMouseLeave()"
+  (mouseenter)="onMouseEnter()"
+  (mousemove)="onMouseMove($event)"
+  >
+  <div>isMouseInWindow : {{isMouseInWindow}}</div>
+  <div>isLeftClickPressed : {{isLeftClickPressed}}</div>
+  <div>isRightClickPressed : {{isRightClickPressed}}</div>
+  <div>isWheelClickPressed : {{isWheelClickPressed}}</div>
+  <div>mouse x : {{mouseLocation.x}}</div>
+  <div>mouse y : {{mouseLocation.y}}</div>
+</div>
 </div>
