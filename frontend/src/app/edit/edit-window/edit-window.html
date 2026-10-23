@@ -7,7 +7,7 @@
   (mousemove)="onMouseMove($event)"
   (wheel)="onWheel($event)"
   >
-  <!---->
+  <!--
   <div>isMouseInWindow : {{controller.isMouseInWindow()}}</div>
   <div>isLeftClickPressed : {{controller.isLeftClickPressed()}}</div>
   <div>isRightClickPressed : {{controller.isRightClickPressed()}}</div>
@@ -15,10 +15,15 @@
   <div>mouse x : {{controller.camLocation().x}}</div>
   <div>mouse y : {{controller.camLocation().y}}</div>
   <div>zoomValue: {{controller.zoomValue()}}</div>
+  -->
   <img
   class="edit-canvas"
   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUcE4SYZpTXOeNKoUuypAe4TWXpJg35EILu66a9eKgqg&s"
-
+  [style.transform]="
+    'translate(' + controller.camLocation().x + 'px,' +
+                  controller.camLocation().y + 'px) scale(' +
+                  controller.zoomValue() + ')'
+  "
   />
 
 </div>
