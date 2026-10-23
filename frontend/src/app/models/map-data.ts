@@ -1,10 +1,5 @@
-type Layer = "terrain" | "vegetation" | "roads" | "cities"
-const LAYERS : Layer[] = [
-  "terrain",
-  "vegetation",
-  "roads",
-  "cities",
-]
+export type Layer = "terrain" | "vegetation" | "roads" | "cities"
+
 export class MapData {
   private layers!: Record<Layer, Uint8Array>;
 
