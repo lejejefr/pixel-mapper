@@ -1,6 +1,11 @@
 import { Service, signal, computed } from '@angular/core';
 import { min } from 'rxjs';
 
+type Location = {
+  x: number;
+  y: number;
+}
+
 @Service()
 export class EditWindowControlService {
 
@@ -10,7 +15,7 @@ export class EditWindowControlService {
   readonly isLeftClickPressed = signal<boolean>(false);
   readonly isRightClickPressed = signal<boolean>(false);
   readonly isWheelClickPressed = signal<boolean>(false);
-  readonly mouseLocation = signal<{x: number, y: number} >({x: 0, y: 0});
+  readonly mouseLocation = signal<Location >({x: 0, y: 0});
 
   //
   readonly zoomValue = signal<number>(1);
@@ -18,21 +23,26 @@ export class EditWindowControlService {
   private readonly maxZoom : number = 10;
   private readonly deltaZoom : number = .5;
 
-  private clickOrigin = signal<{x: number, y: number}>({x: 0, y: 0});
-  private camOrigin = signal<{x: number, y: number}>({x: 0, y : 0});
-  readonly camLocation = computed<{x: number, y: number}>(
+  private clickOrigin = signal<Location>({x: 0, y: 0});
+  private camOrigin = signal<Location>({x: 0, y : 0});
+  readonly camLocation = computed<Location>(
     () => {
       if(this.isWheelClickPressed()){
-        return {
-          x: this.camOrigin().x + (this.mouseLocation().x - this.clickOrigin().x) / this.zoomValue(),
-          y: this.camOrigin().y + (this.mouseLocation().y - this.clickOrigin().y) / this.zoomValue(),
-        }
+        return this.pan();
       }
       return this.camOrigin();
     }
   );
 
   public camera : {x: number, y: number, zoom: number} = {x: 0, y: 0, zoom: 0};
+
+  readonly pan = computed<Location>(() => {
+    return {
+          x: this.camOrigin().x + (this.mouseLocation().x - this.clickOrigin().x) /*/ this.zoomValue()*/,
+          y: this.camOrigin().y + (this.mouseLocation().y - this.clickOrigin().y) /*/ this.zoomValue()*/,
+        }
+  });
+
 
   onMouseDown(event : MouseEvent): void{
     if(this.isMouseInWindow()){
@@ -56,10 +66,7 @@ export class EditWindowControlService {
         this.isLeftClickPressed.set(false);
         break;
       case 1:
-        this.camOrigin.set({
-          x: this.camOrigin().x + (this.mouseLocation().x - this.clickOrigin().x) / this.zoomValue(),
-          y: this.camOrigin().y + (this.mouseLocation().y - this.clickOrigin().y) / this.zoomValue(),
-        });
+        this.camOrigin.set(this.pan());
         this.isWheelClickPressed.set(false);
         break;
       case 2:
@@ -68,10 +75,9 @@ export class EditWindowControlService {
     }
   }
   onMouseLeave(): void{
-    this.camOrigin.set({
-      x: this.camOrigin().x + (this.mouseLocation().x - this.clickOrigin().x) / this.zoomValue(),
-      y: this.camOrigin().y + (this.mouseLocation().y - this.clickOrigin().y) / this.zoomValue(),
-    });
+    if(this.isWheelClickPressed()){
+      this.camOrigin.set(this.pan());
+    }
     this.isMouseInWindow.set(false);
     this.isLeftClickPressed.set(false);
     this.isWheelClickPressed.set(false);
