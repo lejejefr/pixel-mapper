@@ -1,8 +1,11 @@
+import { EditCanvas } from '../edit-canvas/edit-canvas';
 import { EditWindowControlService } from './../../services/edit-window-control-service/edit-window-control-service';
 import { Component, inject } from '@angular/core';
 
 @Component({
-  imports: [],
+  imports: [
+    EditCanvas,
+  ],
   selector: 'app-edit-window',
   styleUrl: './edit-window.scss',
   templateUrl: './edit-window.html',

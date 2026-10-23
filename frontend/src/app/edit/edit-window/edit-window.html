@@ -16,9 +16,8 @@
   <div>mouse y : {{controller.camLocation().y}}</div>
   <div>zoomValue: {{controller.zoomValue()}}</div>
   -->
-  <img
+  <app-edit-canvas
   class="edit-canvas"
-  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUcE4SYZpTXOeNKoUuypAe4TWXpJg35EILu66a9eKgqg&s"
   [style.transform]="
     'translate(' + controller.camLocation().x + 'px,' +
                   controller.camLocation().y + 'px) scale(' +
