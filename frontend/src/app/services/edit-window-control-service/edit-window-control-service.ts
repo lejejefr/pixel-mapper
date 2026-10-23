@@ -11,10 +11,9 @@ export class EditWindowControlService {
   readonly isRightClickPressed = signal<boolean>(false);
   readonly isWheelClickPressed = signal<boolean>(false);
   readonly mouseLocation = signal<{x: number, y: number} >({x: 0, y: 0});
-  readonly wheelDeltaY = signal<"up" | "down" | "neutral">("neutral");
 
   //
-  private zoomValue = signal<number>(1);
+  readonly zoomValue = signal<number>(1);
   private readonly minZoom : number = 1;
   private readonly maxZoom : number = 10;
   private readonly deltaZoom : number = .5;
@@ -64,15 +63,11 @@ export class EditWindowControlService {
   }
   onWheel(event : WheelEvent): void{
     if(event.deltaY > 0){
-      this.wheelDeltaY.set("down");
       this.zoomValue.set(Math.max(this.zoomValue() - this.deltaZoom, this.minZoom));
 
     }else if(event.deltaY < 0){
-      this.wheelDeltaY.set("up");
       this.zoomValue.set(Math.min(this.zoomValue() + this.deltaZoom, this.maxZoom));
 
-    }else{
-      this.wheelDeltaY.set("neutral");
     }
   }
 }
