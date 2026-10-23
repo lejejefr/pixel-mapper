@@ -18,7 +18,20 @@ export class EditWindowControlService {
   private readonly maxZoom : number = 10;
   private readonly deltaZoom : number = .5;
 
-  public clickOrigin :{x: number, y: number} = {x: 0, y: 0};
+  private clickOrigin = signal<{x: number, y: number}>({x: 0, y: 0});
+  private camOrigin = signal<{x: number, y: number}>({x: 0, y : 0});
+  readonly camLocation = computed<{x: number, y: number}>(
+    () => {
+      if(this.isWheelClickPressed()){
+        return {
+          x: this.camOrigin().x + (this.mouseLocation().x - this.clickOrigin().x) / this.zoomValue(),
+          y: this.camOrigin().y + (this.mouseLocation().y - this.clickOrigin().y) / this.zoomValue(),
+        }
+      }
+      return this.camOrigin();
+    }
+  );
+
   public camera : {x: number, y: number, zoom: number} = {x: 0, y: 0, zoom: 0};
 
   onMouseDown(event : MouseEvent): void{
@@ -29,6 +42,7 @@ export class EditWindowControlService {
           break;
         case 1:
           this.isWheelClickPressed.set(true);
+          this.clickOrigin.set(this.mouseLocation());
           break;
         case 2:
           this.isRightClickPressed.set(true);
@@ -42,6 +56,10 @@ export class EditWindowControlService {
         this.isLeftClickPressed.set(false);
         break;
       case 1:
+        this.camOrigin.set({
+          x: this.camOrigin().x + (this.mouseLocation().x - this.clickOrigin().x) / this.zoomValue(),
+          y: this.camOrigin().y + (this.mouseLocation().y - this.clickOrigin().y) / this.zoomValue(),
+        });
         this.isWheelClickPressed.set(false);
         break;
       case 2:
@@ -50,6 +68,10 @@ export class EditWindowControlService {
     }
   }
   onMouseLeave(): void{
+    this.camOrigin.set({
+      x: this.camOrigin().x + (this.mouseLocation().x - this.clickOrigin().x) / this.zoomValue(),
+      y: this.camOrigin().y + (this.mouseLocation().y - this.clickOrigin().y) / this.zoomValue(),
+    });
     this.isMouseInWindow.set(false);
     this.isLeftClickPressed.set(false);
     this.isWheelClickPressed.set(false);
@@ -59,7 +81,7 @@ export class EditWindowControlService {
     this.isMouseInWindow.set(true);
   }
   onMouseMove(event: MouseEvent): void{
-    this.mouseLocation.set({x: event.offsetX, y: event.offsetY});
+    this.mouseLocation.set({x: event.clientX, y: event.clientY});
   }
   onWheel(event : WheelEvent): void{
     if(event.deltaY > 0){
