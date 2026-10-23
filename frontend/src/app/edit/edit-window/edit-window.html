@@ -5,12 +5,21 @@
   (mouseleave)="onMouseLeave()"
   (mouseenter)="onMouseEnter()"
   (mousemove)="onMouseMove($event)"
+  (wheel)="onWheel($event)"
   >
-  <div>isMouseInWindow : {{isMouseInWindow}}</div>
-  <div>isLeftClickPressed : {{isLeftClickPressed}}</div>
-  <div>isRightClickPressed : {{isRightClickPressed}}</div>
-  <div>isWheelClickPressed : {{isWheelClickPressed}}</div>
-  <div>mouse x : {{mouseLocation.x}}</div>
-  <div>mouse y : {{mouseLocation.y}}</div>
-</div>
+  <!--
+  <div>isMouseInWindow : {{controller.isMouseInWindow}}</div>
+  <div>isLeftClickPressed : {{controller.isLeftClickPressed}}</div>
+  <div>isRightClickPressed : {{controller.isRightClickPressed}}</div>
+  <div>isWheelClickPressed : {{controller.isWheelClickPressed}}</div>
+  <div>mouse x : {{controller.mouseLocation.x}}</div>
+  <div>mouse y : {{controller.mouseLocation.y}}</div>
+  <div>deltaY: {{controller.wheelDeltaY}}</div>
+  -->
+  <img
+  class="edit-canvas"
+  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUcE4SYZpTXOeNKoUuypAe4TWXpJg35EILu66a9eKgqg&s"
+
+  />
+
 </div>
