@@ -1,26 +1,38 @@
-import { Service } from '@angular/core';
+import { Service, signal, computed } from '@angular/core';
+import { min } from 'rxjs';
 
 @Service()
 export class EditWindowControlService {
 
-  public isMouseInWindow: boolean = false;
-  public isLeftClickPressed: boolean = false;
-  public isRightClickPressed: boolean = false;
-  public isWheelClickPressed: boolean = false;
-  public mouseLocation: {x: number, y: number} = {x: 0, y: 0}
-  public wheelDeltaY : number = 0;
+  //entrées éditeur
+
+  readonly isMouseInWindow = signal<boolean>(false);
+  readonly isLeftClickPressed = signal<boolean>(false);
+  readonly isRightClickPressed = signal<boolean>(false);
+  readonly isWheelClickPressed = signal<boolean>(false);
+  readonly mouseLocation = signal<{x: number, y: number} >({x: 0, y: 0});
+  readonly wheelDeltaY = signal<"up" | "down" | "neutral">("neutral");
+
+  //
+  private zoomValue = signal<number>(1);
+  private readonly minZoom : number = 1;
+  private readonly maxZoom : number = 10;
+  private readonly deltaZoom : number = .5;
+
+  public clickOrigin :{x: number, y: number} = {x: 0, y: 0};
+  public camera : {x: number, y: number, zoom: number} = {x: 0, y: 0, zoom: 0};
 
   onMouseDown(event : MouseEvent): void{
-    if(this.isMouseInWindow){
+    if(this.isMouseInWindow()){
       switch(event.button){
         case 0:
-          this.isLeftClickPressed = true;
+          this.isLeftClickPressed.set(true);
           break;
         case 1:
-          this.isWheelClickPressed = true;
+          this.isWheelClickPressed.set(true);
           break;
         case 2:
-          this.isRightClickPressed = true;
+          this.isRightClickPressed.set(true);
           break;
       }
     }
@@ -28,32 +40,39 @@ export class EditWindowControlService {
   onMouseUp(event : MouseEvent): void{
     switch(event.button){
       case 0:
-        this.isLeftClickPressed = false;
+        this.isLeftClickPressed.set(false);
         break;
       case 1:
-        this.isWheelClickPressed = false;
+        this.isWheelClickPressed.set(false);
         break;
       case 2:
-        this.isRightClickPressed = false;
+        this.isRightClickPressed.set(false);
         break;
     }
   }
   onMouseLeave(): void{
-    this.isMouseInWindow = false;
-    this.isLeftClickPressed = false;
-    this.isWheelClickPressed = false;
-    this.isRightClickPressed = false;
+    this.isMouseInWindow.set(false);
+    this.isLeftClickPressed.set(false);
+    this.isWheelClickPressed.set(false);
+    this.isRightClickPressed.set(false);
   }
   onMouseEnter(): void{
-    this.isMouseInWindow = true;
+    this.isMouseInWindow.set(true);
   }
   onMouseMove(event: MouseEvent): void{
-    this.mouseLocation.x = event.offsetX
-    this.mouseLocation.y = event.offsetY
+    this.mouseLocation.set({x: event.offsetX, y: event.offsetY});
   }
   onWheel(event : WheelEvent): void{
-    this.wheelDeltaY = event.deltaY;
+    if(event.deltaY > 0){
+      this.wheelDeltaY.set("down");
+      this.zoomValue.set(Math.max(this.zoomValue() - this.deltaZoom, this.minZoom));
+
+    }else if(event.deltaY < 0){
+      this.wheelDeltaY.set("up");
+      this.zoomValue.set(Math.min(this.zoomValue() + this.deltaZoom, this.maxZoom));
+
+    }else{
+      this.wheelDeltaY.set("neutral");
+    }
   }
-
-
 }

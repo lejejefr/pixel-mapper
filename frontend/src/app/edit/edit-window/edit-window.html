@@ -7,15 +7,15 @@
   (mousemove)="onMouseMove($event)"
   (wheel)="onWheel($event)"
   >
-  <!--
-  <div>isMouseInWindow : {{controller.isMouseInWindow}}</div>
-  <div>isLeftClickPressed : {{controller.isLeftClickPressed}}</div>
-  <div>isRightClickPressed : {{controller.isRightClickPressed}}</div>
-  <div>isWheelClickPressed : {{controller.isWheelClickPressed}}</div>
-  <div>mouse x : {{controller.mouseLocation.x}}</div>
-  <div>mouse y : {{controller.mouseLocation.y}}</div>
-  <div>deltaY: {{controller.wheelDeltaY}}</div>
-  -->
+  <!---->
+  <div>isMouseInWindow : {{controller.isMouseInWindow()}}</div>
+  <div>isLeftClickPressed : {{controller.isLeftClickPressed()}}</div>
+  <div>isRightClickPressed : {{controller.isRightClickPressed()}}</div>
+  <div>isWheelClickPressed : {{controller.isWheelClickPressed()}}</div>
+  <div>mouse x : {{controller.mouseLocation().x}}</div>
+  <div>mouse y : {{controller.mouseLocation().y}}</div>
+  <div>deltaY: {{controller.wheelDeltaY()}}</div>
+  <div>zoomValue: {{controller.zoomValue()}}</div>
   <img
   class="edit-canvas"
   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUcE4SYZpTXOeNKoUuypAe4TWXpJg35EILu66a9eKgqg&s"
