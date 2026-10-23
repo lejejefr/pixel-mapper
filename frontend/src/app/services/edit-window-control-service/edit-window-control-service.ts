@@ -45,7 +45,6 @@ export class EditWindowControlService {
 
 
   onMouseDown(event : MouseEvent): void{
-    if(this.isMouseInWindow()){
       switch(event.button){
         case 0:
           this.isLeftClickPressed.set(true);
@@ -58,19 +57,27 @@ export class EditWindowControlService {
           this.isRightClickPressed.set(true);
           break;
       }
-    }
   }
   onMouseUp(event : MouseEvent): void{
+
     switch(event.button){
       case 0:
-        this.isLeftClickPressed.set(false);
+        if(this.isLeftClickPressed()){
+          this.isLeftClickPressed.set(false);
+        }
+
         break;
       case 1:
-        this.camOrigin.set(this.pan());
-        this.isWheelClickPressed.set(false);
+        if(this.isWheelClickPressed()){
+          this.camOrigin.set(this.pan());
+          this.isWheelClickPressed.set(false);
+        }
+
         break;
       case 2:
-        this.isRightClickPressed.set(false);
+        if(this.isRightClickPressed()){
+          this.isRightClickPressed.set(false);
+        }
         break;
     }
   }
