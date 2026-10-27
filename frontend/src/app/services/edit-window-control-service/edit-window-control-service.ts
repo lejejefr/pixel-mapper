@@ -92,7 +92,7 @@ export class EditWindowControlService {
     this.isMouseInWindow.set(true);
   }
   onMouseMove(event: MouseEvent): void{
-    this.mouseLocation.set({x: event.clientX, y: event.clientY});
+    this.mouseLocation.set({x: event.offsetX, y: event.offsetY});
   }
   onWheel(event : WheelEvent): void{
     if(event.deltaY > 0){

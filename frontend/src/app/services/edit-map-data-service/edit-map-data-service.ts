@@ -40,12 +40,10 @@ export class EditMapDataService {
       };
       if (isLeftClickPressed){
         const cell : {x: number, y: number} = {
-          x: Math.round(((mouseLocation.x + camera.x)) / TILE_SIZE.width),
-          y: Math.round(((mouseLocation.y + camera.y)) / TILE_SIZE.height),
+          x: Math.round(((mouseLocation.x - camera.x)) / camera.zoom / TILE_SIZE.width),
+          y: Math.round(((mouseLocation.y - camera.y)) / camera.zoom / TILE_SIZE.height),
         }
-        console.log(cell);
         this.setCell(cell.x,cell.y,"terrain",1);
-        console.log(this.map().getCell(cell.x,cell.y,"terrain"));
       }
     })
   }

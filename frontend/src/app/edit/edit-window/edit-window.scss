@@ -18,4 +18,5 @@
 .edit-canvas{
   display: block;
   transform: translate(camX,camY) scale(zoom);
+  pointer-events: none;
 }
