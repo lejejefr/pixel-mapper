@@ -1,7 +1,7 @@
 import { Service, signal, computed } from '@angular/core';
 import { min } from 'rxjs';
 
-type Location = {
+export type Location = {
   x: number;
   y: number;
 }
@@ -33,8 +33,6 @@ export class EditWindowControlService {
       return this.camOrigin();
     }
   );
-
-  public camera : {x: number, y: number, zoom: number} = {x: 0, y: 0, zoom: 0};
 
   readonly pan = computed<Location>(() => {
     return {
