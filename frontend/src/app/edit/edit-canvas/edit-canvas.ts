@@ -6,10 +6,10 @@ import {
   inject,
   effect,
   signal,
+  input,
 } from '@angular/core';
 import { EditMapDataService, TILE_SIZE } from '../../services/edit-map-data-service/edit-map-data-service';
 import { Layer, MapData } from '../../models/map-data';
-import { elementAt } from 'rxjs';
 
 @Component({
   selector: 'app-edit-canvas',
@@ -19,6 +19,7 @@ import { elementAt } from 'rxjs';
 })
 export class EditCanvas implements AfterViewInit {
   readonly editMapDataService = inject(EditMapDataService);
+  readonly layer = input<Layer>("terrain");
 
   @ViewChild('canvasRef', { static: true })
   canvasRef!: ElementRef<HTMLCanvasElement>;
@@ -30,6 +31,8 @@ export class EditCanvas implements AfterViewInit {
     this.spriteSheet.onload = () => this.spriteSheetReady.set(true);
 
     effect(() => {
+      const _layer = this.layer();
+      this.spriteSheetReady();
       const change = this.editMapDataService.lastChange();
       const canvas = this.canvasRef.nativeElement;
       const ctx = canvas.getContext('2d');
@@ -47,20 +50,22 @@ export class EditCanvas implements AfterViewInit {
     this.drawAllMap();
   }
 
-  drawAllMap(): void{const canvas = this.canvasRef.nativeElement;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    const { width, height } = this.editMapDataService.canvasSize();
-    ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0, 0, width, height);
+  drawAllMap(): void{
+    const map : MapData = this.editMapDataService.map();
+    for(let i = 0; i < map.width - 1; i++){
+      for(let j = 0; j < map.height - j; j++){
+        this.redrawTile(i, j, this.layer());
+      }
+    }
   }
 
   drawMapSection(x: number, y: number, layer : Layer): void{
-    this.redrawTile(x,y,layer);
-    this.redrawTile(x - 1,y,layer);
-    this.redrawTile(x,y - 1,layer);
-    this.redrawTile(x - 1,y - 1,layer);
+    if(layer=== this.layer()){
+      this.redrawTile(x,y,layer);
+      this.redrawTile(x - 1,y,layer);
+      this.redrawTile(x,y - 1,layer);
+      this.redrawTile(x - 1,y - 1,layer);
+    }
   }
 
 
@@ -112,9 +117,9 @@ export class EditCanvas implements AfterViewInit {
   getTileAbsoluteLocation(value : number, layer : Layer, index : number): {x: number, y: number, w: number, h: number}{
     const layerIndex = {
       "terrain": 0,
-      "vegetation": 0,
-      "roads": 0,
-      "cities": 0,
+      "vegetation": 1,
+      "roads": 2,
+      "cities": 3,
     }[layer];
 
     const tileRelativeLocation = this.getTileRelativeLocationFromIndex(index);

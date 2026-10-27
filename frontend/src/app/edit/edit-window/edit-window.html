@@ -18,6 +18,34 @@
   -->
   <app-edit-canvas
   class="edit-canvas"
+  [layer]="'terrain'"
+  [style.transform]="
+    'translate(' + controller.camLocation().x + 'px,' +
+                  controller.camLocation().y + 'px) scale(' +
+                  controller.zoomValue() + ')'
+  "
+  />
+  <app-edit-canvas
+  class="edit-canvas"
+  [layer]="'vegetation'"
+  [style.transform]="
+    'translate(' + controller.camLocation().x + 'px,' +
+                  controller.camLocation().y + 'px) scale(' +
+                  controller.zoomValue() + ')'
+  "
+  />
+  <app-edit-canvas
+  class="edit-canvas"
+  [layer]="'roads'"
+  [style.transform]="
+    'translate(' + controller.camLocation().x + 'px,' +
+                  controller.camLocation().y + 'px) scale(' +
+                  controller.zoomValue() + ')'
+  "
+  />
+  <app-edit-canvas
+  class="edit-canvas"
+  [layer]="'cities'"
   [style.transform]="
     'translate(' + controller.camLocation().x + 'px,' +
                   controller.camLocation().y + 'px) scale(' +

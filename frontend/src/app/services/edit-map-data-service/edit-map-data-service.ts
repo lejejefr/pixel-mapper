@@ -18,7 +18,7 @@ export class EditMapDataService {
     new Date(Date.now()),
     "title",
     "description",
-    16,16
+    32,32
   ));
   readonly lastChange = signal<{ x: number, y: number, layer: Layer, } | null>(null);
 
