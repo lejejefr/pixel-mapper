@@ -127,7 +127,7 @@ export class EditCanvas implements AfterViewInit {
       {x: x + 1, y: y + 1},
     ].forEach(cell => {
       const value = map.getCell(cell.x,cell.y,layer);
-      if(!(value in result)){
+      if(!(result.includes(value))){
         result.push(value);
       }
     });

@@ -16,25 +16,25 @@
     type="button"
     class="tool-icon" aria-label=""
     (click)="onToolSelected(2)">
-      <img src="/grassland-icon.svg" alt="GRASSLAND" />
-    </button>
-    <button
-    type="button"
-    class="tool-icon" aria-label=""
-    (click)="onToolSelected(3)">
       <img src="/desert-icon.svg" alt="DESERT" />
     </button>
     <button
     type="button"
     class="tool-icon" aria-label=""
+    (click)="onToolSelected(3)">
+      <img src="/grassland-icon.svg" alt="GRASSLAND" />
+    </button>
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
     (click)="onToolSelected(4)">
-      <img src="/montain-icon.svg" alt="MONTAIN" />
+      <img src="/snowplains-icon.svg" alt="SNOWPLAINS" />
     </button>
     <button
     type="button"
     class="tool-icon" aria-label=""
     (click)="onToolSelected(5)">
-      <img src="/snowplains-icon.svg" alt="SNOWPLAINS" />
+      <img src="/montain-icon.svg" alt="MONTAIN" />
     </button>
   }
   @if(editWindowControlService.selectedLayer() === "vegetation"){
