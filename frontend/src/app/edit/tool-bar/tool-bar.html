@@ -1,3 +1,88 @@
 <div class="tool-bar">
-
+  @if(editWindowControlService.selectedLayer() === "terrain"){
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(0)">
+      <img src="/ocean-icon.svg" alt="OCEAN" />
+    </button>
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(1)">
+      <img src="/sea-icon.svg" alt="SEA" />
+    </button>
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(2)">
+      <img src="/grassland-icon.svg" alt="GRASSLAND" />
+    </button>
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(3)">
+      <img src="/desert-icon.svg" alt="DESERT" />
+    </button>
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(4)">
+      <img src="/montain-icon.svg" alt="MONTAIN" />
+    </button>
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(5)">
+      <img src="/snowplains-icon.svg" alt="SNOWPLAINS" />
+    </button>
+  }
+  @if(editWindowControlService.selectedLayer() === "vegetation"){
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(0)">
+      <img src="/erase-icon.svg" alt="ERASER" />
+    </button>
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(1)">
+      <img src="/forest-icon.svg" alt="FOREST" />
+    </button>
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(2)">
+      <img src="/montain-chains-icon.svg" alt="MONTAIN CHAINS" />
+    </button>
+  }
+  @if(editWindowControlService.selectedLayer() === "roads"){
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(0)">
+      <img src="/erase-icon.svg" alt="ERASER" />
+    </button>
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(1)">
+      <img src="/draw-icon.svg" alt="FOREST" />
+    </button>
+  }
+  @if(editWindowControlService.selectedLayer() === "cities"){
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(0)">
+      <img src="/erase-icon.svg" alt="ERASER" />
+    </button>
+    <button
+    type="button"
+    class="tool-icon" aria-label=""
+    (click)="onToolSelected(1)">
+      <img src="/draw-icon.svg" alt="FOREST" />
+    </button>
+  }
 </div>

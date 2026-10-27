@@ -7,8 +7,16 @@
 }
 
 .tool-icon {
-  width: 40px;
-  height: 40px;
-  margin: 4px;
-  background-color: aquamarine;
+  width: 48px;
+  height: 48px;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+
+.tool-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;   // garde les proportions dans un carré 72x72
 }

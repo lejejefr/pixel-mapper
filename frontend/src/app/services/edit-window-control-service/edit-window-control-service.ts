@@ -43,7 +43,7 @@ export class EditWindowControlService {
   });
 
   //pen
-  readonly selectedLayer = signal<Layer | null>(null);
+  readonly selectedLayer = signal<Layer>("terrain");
   readonly selectedValue = signal<number>(0);
 
   onMouseDown(event : MouseEvent): void{
