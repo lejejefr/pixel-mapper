@@ -9,8 +9,8 @@ export class MapData {
     public lastUpdate: Date,
     public title: string,
     public description: string,
-    public height: number,
     public width: number,
+    public height: number,
   ) {
     this.layers = {
       terrain: new Uint8Array(height * width),
