@@ -37,17 +37,16 @@ export class EditCanvas implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const canvas = this.canvasRef.nativeElement;
+    this.drawAllMap();
+  }
+
+  drawAllMap(): void{const canvas = this.canvasRef.nativeElement;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     const { width, height } = this.editMapDataService.canvasSize();
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, width, height);
-  }
-
-  drawAllMap(): void{
-
   }
 
   drawMapSection(x: number, y: number, layer : Layer): void{
@@ -59,10 +58,10 @@ export class EditCanvas implements AfterViewInit {
 
     if(map.getCell(x,y,layer) === 0){
       ctx.fillStyle = 'rgb(255, 255, 255)';
-      ctx.fillRect(x * TILE_SIZE.width, y * TILE_SIZE.height, TILE_SIZE.width, TILE_SIZE.height);
+      ctx.fillRect((x - 0.5) * TILE_SIZE.width, (y - 0.5) * TILE_SIZE.height, TILE_SIZE.width, TILE_SIZE.height);
     }else if(map.getCell(x,y,layer) === 1){
       ctx.fillStyle = '#3a1987';
-      ctx.fillRect(x * TILE_SIZE.width, y * TILE_SIZE.height, TILE_SIZE.width, TILE_SIZE.height);
+      ctx.fillRect((x - 0.5) * TILE_SIZE.width, (y - 0.5) * TILE_SIZE.height, TILE_SIZE.width, TILE_SIZE.height);
     }
   }
 }

@@ -24,8 +24,8 @@ export class EditMapDataService {
 
   readonly canvasSize = computed<{width: number, height: number}>(() => {
     return {
-      width: TILE_SIZE.width * this.map().width,
-      height: TILE_SIZE.height * this.map().height,
+      width: TILE_SIZE.width * (this.map().width - 1),
+      height: TILE_SIZE.height * (this.map().height - 1),
     };
   });
 
@@ -40,8 +40,8 @@ export class EditMapDataService {
       };
       if (isLeftClickPressed){
         const cell : {x: number, y: number} = {
-          x: Math.floor(((mouseLocation.x - camera.x)) / camera.zoom / TILE_SIZE.width),
-          y: Math.floor(((mouseLocation.y - camera.y)) / camera.zoom / TILE_SIZE.height),
+          x: Math.round(((mouseLocation.x - camera.x)) / camera.zoom / TILE_SIZE.width),
+          y: Math.round(((mouseLocation.y - camera.y)) / camera.zoom / TILE_SIZE.height),
         }
         this.setCell(cell.x,cell.y,"terrain",1);
       }
