@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   styleUrl: './edit-canvas.scss',
   templateUrl: './edit-canvas.html',
 })
-export class EditCanvas {}
+export class EditCanvas {
+
+}
