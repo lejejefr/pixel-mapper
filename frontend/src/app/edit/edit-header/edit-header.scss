@@ -15,6 +15,7 @@
 
 .edit-header-icon {
   display: block;
+  align-content: center;
   width: 72px;
   height: 72px;
   padding: 0;
@@ -25,7 +26,7 @@
 
 .edit-header-icon img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 70%;
+  height: 70%;
   object-fit: contain;   // garde les proportions dans un carré 72x72
 }

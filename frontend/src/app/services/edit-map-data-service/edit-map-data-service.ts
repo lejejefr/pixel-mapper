@@ -38,7 +38,8 @@ export class EditMapDataService {
         y: this.windowControllerService.camLocation().y,
         zoom: this.windowControllerService.zoomValue(),
       };
-      if (isLeftClickPressed){
+      const layer : Layer | null = this.windowControllerService.selectedLayer();
+      if (isLeftClickPressed && layer != null){
         const cell : {x: number, y: number} = {
           x: Math.round(((mouseLocation.x - camera.x)) / camera.zoom / TILE_SIZE.width),
           y: Math.round(((mouseLocation.y - camera.y)) / camera.zoom / TILE_SIZE.height),

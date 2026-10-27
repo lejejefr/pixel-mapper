@@ -1,5 +1,6 @@
 import { Service, signal, computed } from '@angular/core';
 import { min } from 'rxjs';
+import { Layer } from '../../models/map-data';
 
 export type Location = {
   x: number;
@@ -17,7 +18,7 @@ export class EditWindowControlService {
   readonly isWheelClickPressed = signal<boolean>(false);
   readonly mouseLocation = signal<Location >({x: 0, y: 0});
 
-  //
+  //camera
   readonly zoomValue = signal<number>(1);
   private readonly minZoom : number = 1;
   private readonly maxZoom : number = 10;
@@ -41,6 +42,9 @@ export class EditWindowControlService {
         }
   });
 
+  //pen
+  readonly selectedLayer = signal<Layer | null>(null);
+  readonly selectedValue = signal<number>(0);
 
   onMouseDown(event : MouseEvent): void{
       switch(event.button){

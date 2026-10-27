@@ -1,3 +1,4 @@
+import { EditWindowControlService } from './../../services/edit-window-control-service/edit-window-control-service';
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,8 +10,22 @@ import { Router } from '@angular/router';
 })
 export class EditHeader {
   private router = inject(Router);
+  private editWindowControlService = inject(EditWindowControlService);
 
   onExitPressed(): void{
     this.router.navigateByUrl("nav-page");
+  }
+
+  onTerrainPressed(): void{
+    this.editWindowControlService.selectedLayer.set("terrain");
+  }
+  onVegetationPressed(): void{
+    this.editWindowControlService.selectedLayer.set("vegetation");
+  }
+  onPathPressed(): void{
+    this.editWindowControlService.selectedLayer.set("roads");
+  }
+  onCityPressed(): void{
+    this.editWindowControlService.selectedLayer.set("cities");
   }
 }
