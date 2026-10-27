@@ -17,6 +17,8 @@
 
 .edit-canvas{
   display: block;
+  transform-origin: 0 0;
+  will-change: transform;
   transform: translate(camX,camY) scale(zoom);
   pointer-events: none;
 }
