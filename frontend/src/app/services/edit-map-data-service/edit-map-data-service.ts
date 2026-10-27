@@ -42,8 +42,8 @@ export class EditMapDataService {
       const value : number = this.windowControllerService.selectedValue();
       if (isLeftClickPressed){
         const cell : {x: number, y: number} = {
-          x: Math.floor(((mouseLocation.x - camera.x)) / camera.zoom / TILE_SIZE.width),
-          y: Math.floor(((mouseLocation.y - camera.y)) / camera.zoom / TILE_SIZE.height),
+          x: Math.round(((mouseLocation.x - camera.x)) / camera.zoom / TILE_SIZE.width),
+          y: Math.round(((mouseLocation.y - camera.y)) / camera.zoom / TILE_SIZE.height),
         }
         this.setCell(cell.x,cell.y,layer,value);
       }

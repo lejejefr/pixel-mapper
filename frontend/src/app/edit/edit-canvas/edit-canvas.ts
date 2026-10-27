@@ -71,6 +71,16 @@ export class EditCanvas implements AfterViewInit {
   }
 
   redrawTile(x : number, y : number, layer : Layer){
+    const map : MapData = this.editMapDataService.map();
+    if(
+      x < 0 ||
+      y < 0 ||
+      x > map.width - 2 ||
+      y > map.height - 2
+    ){
+      return;
+    }
+
     const canvas = this.canvasRef.nativeElement;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
