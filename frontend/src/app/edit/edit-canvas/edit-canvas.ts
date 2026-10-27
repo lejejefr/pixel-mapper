@@ -59,8 +59,17 @@ export class EditCanvas implements AfterViewInit {
     if(map.getCell(x,y,layer) === 0){
       ctx.fillStyle = 'rgb(255, 255, 255)';
       ctx.fillRect((x - 0.5) * TILE_SIZE.width, (y - 0.5) * TILE_SIZE.height, TILE_SIZE.width, TILE_SIZE.height);
-    }else if(map.getCell(x,y,layer) === 1){
-      ctx.fillStyle = '#3a1987';
+    }else if(map.getCell(x,y,layer) === 1 && layer === "terrain"){
+      ctx.fillStyle = '#57472b';
+      ctx.fillRect((x - 0.5) * TILE_SIZE.width, (y - 0.5) * TILE_SIZE.height, TILE_SIZE.width, TILE_SIZE.height);
+    }else if(map.getCell(x,y,layer) === 1 && layer === "vegetation"){
+      ctx.fillStyle = '#18e344';
+      ctx.fillRect((x - 0.5) * TILE_SIZE.width, (y - 0.5) * TILE_SIZE.height, TILE_SIZE.width, TILE_SIZE.height);
+    }else if(map.getCell(x,y,layer) === 1 && layer === "roads"){
+      ctx.fillStyle = '#7953d2';
+      ctx.fillRect((x - 0.5) * TILE_SIZE.width, (y - 0.5) * TILE_SIZE.height, TILE_SIZE.width, TILE_SIZE.height);
+    }else if(map.getCell(x,y,layer) === 1 && layer === "cities"){
+      ctx.fillStyle = '#ff0000';
       ctx.fillRect((x - 0.5) * TILE_SIZE.width, (y - 0.5) * TILE_SIZE.height, TILE_SIZE.width, TILE_SIZE.height);
     }
   }

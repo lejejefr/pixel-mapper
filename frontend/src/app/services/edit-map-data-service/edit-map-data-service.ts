@@ -44,7 +44,7 @@ export class EditMapDataService {
           x: Math.round(((mouseLocation.x - camera.x)) / camera.zoom / TILE_SIZE.width),
           y: Math.round(((mouseLocation.y - camera.y)) / camera.zoom / TILE_SIZE.height),
         }
-        this.setCell(cell.x,cell.y,"terrain",1);
+        this.setCell(cell.x,cell.y,layer,1);
       }
     })
   }
