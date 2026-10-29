@@ -13,6 +13,7 @@
   gap: 0.25rem;
   height: 100%;
   padding: 0 1rem;
+  -webkit-app-region: drag;
 }
 
 .edit-header-icon {
@@ -27,6 +28,7 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 120ms ease;
+  -webkit-app-region: no-drag;
 
   img {
     width: 24px;

@@ -1,6 +1,6 @@
 'use strict';
 
-const { app, BrowserWindow, dialog, session, shell } = require('electron');
+const { app, BrowserWindow, Menu, dialog, nativeTheme, session, shell } = require('electron');
 const { spawn } = require('child_process');
 const crypto = require('crypto');
 const fs = require('fs');
@@ -11,6 +11,12 @@ const path = require('path');
 const APP_NAME = 'PixelMapper';
 const TOKEN_HEADER = 'X-App-Token';
 const IS_WIN = process.platform === 'win32';
+const IS_MAC = process.platform === 'darwin';
+const BG_PAGE = '#0d0d10'; // = $bg-page de styles.scss
+const TITLEBAR_HEIGHT = 48;
+
+// Thème sombre pour les éléments natifs (dialogues, barre de titre, scrollbars)
+nativeTheme.themeSource = 'dark';
 
 let javaProcess = null;
 let backendExited = false;
@@ -67,6 +73,19 @@ function resolveRuntime() {
     javaBin: javaHome ? path.join(javaHome, 'bin', IS_WIN ? 'java.exe' : 'java') : 'java',
     jar: process.env.BACKEND_JAR || findJar(path.join(__dirname, '..', '..', 'backend', 'target')),
   };
+}
+
+// ---------- Menu ----------
+function setupMenu() {
+  if (IS_MAC) {
+    // Sur macOS, la barre de menus appartient au système : on garde un menu minimal
+    Menu.setApplicationMenu(
+      Menu.buildFromTemplate([{ role: 'appMenu' }, { role: 'editMenu' }, { role: 'windowMenu' }])
+    );
+  } else {
+    // Windows / Linux : plus de barre « Fichier / Édition / Aide »
+    Menu.setApplicationMenu(null);
+  }
 }
 
 // ---------- Backend ----------
@@ -180,6 +199,7 @@ function showSplash() {
     frame: false,
     resizable: false,
     alwaysOnTop: true,
+    backgroundColor: BG_PAGE,
     webPreferences: { contextIsolation: true, nodeIntegration: false, sandbox: true },
   });
   splash.loadFile(path.join(__dirname, 'loading.html'));
@@ -189,8 +209,18 @@ function createMainWindow(uiUrl, allowedOrigins) {
   mainWindow = new BrowserWindow({
     width: 1280,
     height: 800,
+    minWidth: 960,
+    minHeight: 600,
     show: false,
+    thickFrame: true,
     title: APP_NAME,
+    backgroundColor: BG_PAGE,
+    titleBarStyle: IS_MAC ? 'hiddenInset' : 'hidden',
+    titleBarOverlay: {
+      color: BG_PAGE,          // = $bg-page
+      symbolColor: '#a8a8b3',  // = $text-secondary (icônes réduire / agrandir / fermer)
+      height: TITLEBAR_HEIGHT,
+    },
     webPreferences: { contextIsolation: true, nodeIntegration: false, sandbox: true },
   });
 
@@ -201,6 +231,16 @@ function createMainWindow(uiUrl, allowedOrigins) {
     }
     mainWindow.show();
   });
+
+  // Raccourcis de développement (le menu étant supprimé, ils n'existent plus par défaut)
+  if (!app.isPackaged) {
+    mainWindow.webContents.on('before-input-event', (_event, input) => {
+      if (input.type !== 'keyDown' || !input.control) return;
+      const key = input.key.toLowerCase();
+      if (input.shift && key === 'i') mainWindow.webContents.toggleDevTools();
+      else if (key === 'r') mainWindow.webContents.reload();
+    });
+  }
 
   mainWindow.webContents.setWindowOpenHandler(({ url }) => {
     if (/^https?:/.test(url)) shell.openExternal(url);
@@ -223,6 +263,7 @@ function createMainWindow(uiUrl, allowedOrigins) {
 
 // ---------- Démarrage ----------
 async function bootstrap() {
+  setupMenu();
   showSplash();
   try {
     // BACKEND_PORT : port fixe pour le dev (proxy Angular). Sinon port libre.
