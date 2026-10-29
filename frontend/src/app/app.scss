@@ -1,0 +1,10 @@
+@use '../styles' as t;
+
+:host {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  border: 1px solid t.$border; // Utiliser votre variable de thème
+  box-sizing: border-box; // Empêcher la bordure d'augmenter les dimensions
+  background: t.$bg-page;
+}
