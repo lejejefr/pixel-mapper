@@ -8,25 +8,33 @@
   <button
   type="button"
   class="edit-header-icon" aria-label="Quitter la session"
-  (click)="onTerrainPressed()">
+  (click)="onLayerIconPressed('terrain')"
+  [class.selected]="editWindowControlService.selectedLayer() === 'terrain'"
+  >
     <img src="/terrain-icon.svg" alt="TERRAIN" />
   </button>
   <button
   type="button"
   class="edit-header-icon" aria-label="Quitter la session"
-  (click)="onVegetationPressed()">
+  (click)="onLayerIconPressed('vegetation')"
+  [class.selected]="editWindowControlService.selectedLayer() === 'vegetation'"
+  >
     <img src="/plants-icon.svg" alt="VEGETATION" />
   </button>
   <button
   type="button"
   class="edit-header-icon" aria-label="Quitter la session"
-  (click)="onPathPressed()">
+  (click)="onLayerIconPressed('roads')"
+  [class.selected]="editWindowControlService.selectedLayer() === 'roads'"
+  >
     <img src="/path-icon.svg" alt="ROADS" />
   </button>
   <button
   type="button"
   class="edit-header-icon" aria-label="Quitter la session"
-  (click)="onCityPressed()">
+  (click)="onLayerIconPressed('cities')"
+  [class.selected]="editWindowControlService.selectedLayer() === 'cities'"
+  >
     <img src="/city-icon.svg" alt="CITIES" />
   </button>
 </div>

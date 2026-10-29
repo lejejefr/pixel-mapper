@@ -68,4 +68,11 @@
     background: t.$accent-hover;
   }
 }
+
+  &.selected {
+    background: t.$accent-soft;
+    border-color: t.$accent;
+
+    img { opacity: 1; }
+  }
 }

@@ -1,3 +1,4 @@
+import { Layer } from '../../models/map-data';
 import { EditWindowControlService } from './../../services/edit-window-control-service/edit-window-control-service';
 import { Component, inject } from '@angular/core';
 
@@ -8,26 +9,16 @@ import { Component, inject } from '@angular/core';
   templateUrl: './edit-header.html',
 })
 export class EditHeader {
-  private editWindowControlService = inject(EditWindowControlService);
+  readonly editWindowControlService = inject(EditWindowControlService);
 
   onExitPressed(): void{
     this.editWindowControlService.onExitPressed();
   }
 
-  onTerrainPressed(): void{
-    this.editWindowControlService.selectedLayer.set("terrain");
-    this.editWindowControlService.selectedValue.set(0);
-  }
-  onVegetationPressed(): void{
-    this.editWindowControlService.selectedLayer.set("vegetation");
-    this.editWindowControlService.selectedValue.set(0);
-  }
-  onPathPressed(): void{
-    this.editWindowControlService.selectedLayer.set("roads");
-    this.editWindowControlService.selectedValue.set(0);
-  }
-  onCityPressed(): void{
-    this.editWindowControlService.selectedLayer.set("cities");
-    this.editWindowControlService.selectedValue.set(0);
+  onLayerIconPressed(layer : Layer): void{
+    if(layer != this.editWindowControlService.selectedLayer()){
+      this.editWindowControlService.selectedLayer.set(layer);
+      this.editWindowControlService.selectedValue.set(0);
+    }
   }
 }
