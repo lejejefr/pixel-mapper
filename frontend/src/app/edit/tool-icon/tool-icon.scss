@@ -1,0 +1,40 @@
+@use '../../../styles' as t;
+
+.tool-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid transparent;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 120ms ease, border-color 120ms ease;
+
+  img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: opacity 120ms ease;
+  }
+
+  &:hover {
+    background: t.$bg-surface-hover;
+    img { opacity: 1; }
+  }
+
+  &:focus-visible {
+    outline: 2px solid t.$accent-hover;
+    outline-offset: 2px;
+  }
+
+  &.selected {
+    background: t.$accent-soft;
+    border-color: t.$accent;
+
+    img { opacity: 1; }
+  }
+}

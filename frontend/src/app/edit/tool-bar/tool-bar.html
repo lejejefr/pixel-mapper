@@ -1,12 +1,11 @@
 <div class="tool-bar">
   @if(editWindowControlService.selectedLayer() === "terrain"){
-    <button
-    type="button"
-    class="tool-icon" aria-label=""
-    [class.selected]="editWindowControlService.selectedValue() === 0"
-    (click)="onToolSelected(0)">
-      <img src="/ocean-icon.svg" alt="OCEAN" />
-    </button>
+    <app-tool-icon
+    ariaLabel="Boutton sélectionner la tuile océan"
+    [value]="3"
+    icon="/ocean-icon.svg"
+    alt="Icon océan"
+    ></app-tool-icon>
     <button
     type="button"
     class="tool-icon" aria-label=""

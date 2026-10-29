@@ -1,0 +1,7 @@
+<button
+type="button"
+class="tool-icon" aria-label={{ariaLabel()}}
+[class.selected]="editWindowControlService.selectedValue() === value()"
+(click)="onToolSelected(value())">
+  <img src={{icon()}} alt={{alt()}} />
+</button>
