@@ -1,0 +1,67 @@
+@use '../../../styles' as t;
+
+:host{
+  display: inline-block;
+}
+
+.edit-header-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+
+  img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    opacity: 0.85;
+    transition: opacity 120ms ease;
+  }
+
+  &:hover {
+    background: t.$bg-surface-hover;
+    img { opacity: 1; }
+  }
+
+  &:focus-visible {
+    outline: 2px solid t.$accent-hover;
+    outline-offset: 2px;
+  }
+
+  // Bouton "quitter" isolé à gauche avec un léger écart
+  &:first-child {
+    margin-right: 0.5rem;
+  }
+
+  &.active {
+  background: t.$accent-soft;
+  img { opacity: 1; }
+  // petit point violet en bas
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: t.$accent-hover;
+  }
+}
+
+  &.selected {
+    background: t.$accent-soft;
+    border-color: t.$accent;
+
+    img { opacity: 1; }
+  }
+}

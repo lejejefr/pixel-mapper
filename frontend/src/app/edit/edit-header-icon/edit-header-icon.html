@@ -1,0 +1,8 @@
+<button
+type="button"
+class="edit-header-icon" aria-label={{ariaLabel()}}
+(click)="onLayerIconPressed(layer())"
+[class.selected]="editWindowControlService.selectedLayer() === layer()"
+>
+  <img src={{icon()}} alt={{alt()}} />
+</button>

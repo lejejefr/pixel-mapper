@@ -5,36 +5,11 @@
   (click)="onExitPressed()">
     <img src="/exit-icon.svg" alt="EXIT" />
   </button>
-  <button
-  type="button"
-  class="edit-header-icon" aria-label="Quitter la session"
-  (click)="onLayerIconPressed('terrain')"
-  [class.selected]="editWindowControlService.selectedLayer() === 'terrain'"
-  >
-    <img src="/terrain-icon.svg" alt="TERRAIN" />
-  </button>
-  <button
-  type="button"
-  class="edit-header-icon" aria-label="Quitter la session"
-  (click)="onLayerIconPressed('vegetation')"
-  [class.selected]="editWindowControlService.selectedLayer() === 'vegetation'"
-  >
-    <img src="/plants-icon.svg" alt="VEGETATION" />
-  </button>
-  <button
-  type="button"
-  class="edit-header-icon" aria-label="Quitter la session"
-  (click)="onLayerIconPressed('roads')"
-  [class.selected]="editWindowControlService.selectedLayer() === 'roads'"
-  >
-    <img src="/path-icon.svg" alt="ROADS" />
-  </button>
-  <button
-  type="button"
-  class="edit-header-icon" aria-label="Quitter la session"
-  (click)="onLayerIconPressed('cities')"
-  [class.selected]="editWindowControlService.selectedLayer() === 'cities'"
-  >
-    <img src="/city-icon.svg" alt="CITIES" />
-  </button>
+  @for(icon of HEADER_ICON_RECORD; track icon.layer){
+    <app-edit-header-icon
+    [layer]="icon.layer"
+    [ariaLabel]="icon.ariaLabel"
+    [alt]="icon.alt"
+    [icon]="icon.icon"></app-edit-header-icon>
+  }
 </div>
