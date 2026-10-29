@@ -18,6 +18,6 @@ export class NavPageHeader {
     this.navService.startEditing();
   }
   onParamClick(): void{
-
+    this.router.navigateByUrl('nav-page/reconfigure')
   }
 }

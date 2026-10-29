@@ -1,0 +1,134 @@
+@use '../../../styles' as t;
+
+:host {
+  display: block;
+  min-height: 100%;
+  background: t.$bg-page;
+  color: t.$text-primary;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+form {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+h1, .form-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: t.$text-primary;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: t.$text-secondary;
+    letter-spacing: 0.01em;
+  }
+}
+
+.dimensions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+textarea,
+input[type="number"] {
+  width: 100%;
+  box-sizing: border-box;
+  background: t.$bg-surface;
+  color: t.$text-primary;
+  border: 1px solid t.$border;
+  border-radius: 8px;
+  padding: 0.75rem 0.875rem;
+  font: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  outline: none;
+  transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
+
+  &::placeholder {
+    color: darken(t.$text-secondary, 15%);
+    opacity: 1;
+  }
+
+  &:hover {
+    background: t.$bg-surface-hover;
+  }
+
+  &:focus-visible {
+    border-color: t.$accent;
+    box-shadow: 0 0 0 3px rgba(t.$accent, 0.25);
+    background: t.$bg-surface-hover;
+  }
+
+  &:invalid:not(:placeholder-shown) {
+    border-color: t.$error;
+  }
+}
+
+textarea {
+  resize: vertical;
+  min-height: 96px;
+
+  // le champ description est plus grand
+  &#description {
+    min-height: 128px;
+  }
+}
+
+// Retirer les flèches des inputs number (Chromium)
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+button[type="submit"] {
+  margin-top: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  font: inherit;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: t.$accent-text-on;
+  background: t.$accent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 120ms ease, transform 60ms ease;
+
+  &:hover:not(:disabled) {
+    background: t.$accent-hover;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid t.$accent-hover;
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    background: t.$border;
+    color: darken(t.$text-secondary, 20%);
+    cursor: not-allowed;
+  }
+}

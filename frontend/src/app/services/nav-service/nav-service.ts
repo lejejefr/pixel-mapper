@@ -5,6 +5,7 @@ import { MapListService } from '../map-list-service/map-list-service';
 import { Router } from '@angular/router';
 import { CreateMapRequest } from '../../models/create-request';
 import { MapDataProps } from '../../models/map-data';
+import { ReconfigureRequest } from '../../models/reconfigure-request';
 
 @Service()
 export class NavService {
@@ -46,6 +47,14 @@ export class NavService {
     const id = this.mapListService.createMapData(request);
     this.select(id);
     this.startEditing();
+  }
+
+  reconfigure(request : ReconfigureRequest): void{
+    const id = this.selectedId();
+    if(id != null){
+      this.mapListService.reconfigureMapData(id,request);
+    }
+    this.router.navigateByUrl("nav-page")
   }
 
   duplicate(): void{

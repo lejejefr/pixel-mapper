@@ -2,6 +2,7 @@ import { CreateMapRequest } from './../../models/create-request';
 import { NavListElementProps } from './../../models/nav-list-element-props';
 import { Service, signal } from '@angular/core';
 import { MapData, MapDataProps } from '../../models/map-data';
+import { ReconfigureRequest } from '../../models/reconfigure-request';
 
 @Service()
 export class MapListService {
@@ -77,5 +78,17 @@ export class MapListService {
   });
 
     return mapId;
+  }
+
+  reconfigureMapData(mapId : string, request: ReconfigureRequest): void{
+    this.mapList.update(mapList => {
+      mapList.forEach(map => {
+        if (map.mapId === mapId){
+          map.title = request.title;
+          map.description = request.description;
+        }
+      })
+      return mapList;
+    });
   }
 }

@@ -1,0 +1,30 @@
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <h1>Modifier les informations de la map</h1>
+
+  <div class="field">
+    <label for="title">Titre</label>
+    <textarea
+      id="title"
+      name="title"
+      placeholder="Nouveau titre..."
+      maxlength="128"
+      [(ngModel)]="title"
+      required
+    ></textarea>
+  </div>
+
+  <div class="field">
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      name="description"
+      placeholder="Nouvelle description..."
+      maxlength="512"
+      [(ngModel)]="description"
+    ></textarea>
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">
+    Valider les modifications
+  </button>
+</form>

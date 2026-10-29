@@ -1,20 +1,10 @@
-// Palette
-$bg-page: #0d0d10;       // fond général (noir légèrement bleuté)
-$bg-surface: #17171c;    // surface des champs
-$bg-surface-hover: #1f1f26;
-$border: #2a2a33;        // bordures discrètes
-$text-primary: #f2f2f5;  // texte principal — contraste ~15:1 sur $bg-page ✅
-$text-secondary: #a8a8b3;// texte secondaire — contraste ~7:1 ✅
-$accent: #8b5cf6;        // violet
-$accent-hover: #a78bfa;  // violet clair
-$accent-text-on: #0d0d10;// texte sur bouton accentué (noir) ✅
-$error: #f87171;
+@use '../../../styles' as t;
 
 :host {
   display: block;
   min-height: 100%;
-  background: $bg-page;
-  color: $text-primary;
+  background: t.$bg-page;
+  color: t.$text-primary;
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
@@ -32,7 +22,7 @@ h1, .form-title {
   font-size: 1.75rem;
   font-weight: 600;
   letter-spacing: -0.01em;
-  color: $text-primary;
+  color: t.$text-primary;
 }
 
 .field {
@@ -43,7 +33,7 @@ h1, .form-title {
   label {
     font-size: 0.875rem;
     font-weight: 500;
-    color: $text-secondary;
+    color: t.$text-secondary;
     letter-spacing: 0.01em;
   }
 }
@@ -58,9 +48,9 @@ textarea,
 input[type="number"] {
   width: 100%;
   box-sizing: border-box;
-  background: $bg-surface;
-  color: $text-primary;
-  border: 1px solid $border;
+  background: t.$bg-surface;
+  color: t.$text-primary;
+  border: 1px solid t.$border;
   border-radius: 8px;
   padding: 0.75rem 0.875rem;
   font: inherit;
@@ -70,22 +60,22 @@ input[type="number"] {
   transition: border-color 120ms ease, background-color 120ms ease, box-shadow 120ms ease;
 
   &::placeholder {
-    color: darken($text-secondary, 15%);
+    color: darken(t.$text-secondary, 15%);
     opacity: 1;
   }
 
   &:hover {
-    background: $bg-surface-hover;
+    background: t.$bg-surface-hover;
   }
 
   &:focus-visible {
-    border-color: $accent;
-    box-shadow: 0 0 0 3px rgba($accent, 0.25);
-    background: $bg-surface-hover;
+    border-color: t.$accent;
+    box-shadow: 0 0 0 3px rgba(t.$accent, 0.25);
+    background: t.$bg-surface-hover;
   }
 
   &:invalid:not(:placeholder-shown) {
-    border-color: $error;
+    border-color: t.$error;
   }
 }
 
@@ -116,15 +106,15 @@ button[type="submit"] {
   font: inherit;
   font-weight: 600;
   font-size: 0.95rem;
-  color: $accent-text-on;
-  background: $accent;
+  color: t.$accent-text-on;
+  background: t.$accent;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 120ms ease, transform 60ms ease;
 
   &:hover:not(:disabled) {
-    background: $accent-hover;
+    background: t.$accent-hover;
   }
 
   &:active:not(:disabled) {
@@ -132,13 +122,13 @@ button[type="submit"] {
   }
 
   &:focus-visible {
-    outline: 2px solid $accent-hover;
+    outline: 2px solid t.$accent-hover;
     outline-offset: 3px;
   }
 
   &:disabled {
-    background: $border;
-    color: darken($text-secondary, 20%);
+    background: t.$border;
+    color: darken(t.$text-secondary, 20%);
     cursor: not-allowed;
   }
 }
