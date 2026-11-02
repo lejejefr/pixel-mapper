@@ -5,11 +5,14 @@ import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.pixelmapper.domain.TileMapData;
 import com.pixelmapper.domain.TileMapDataRepoTemplate;
 import com.pixelmapper.persistence.repo.TileMapDataEntity;
 import com.pixelmapper.persistence.repo.TileMapDataJpaRepository;
 
+@Repository 
 public class TileMapDataRepoAdapter implements TileMapDataRepoTemplate {
 
     private final TileMapDataJpaRepository repo;

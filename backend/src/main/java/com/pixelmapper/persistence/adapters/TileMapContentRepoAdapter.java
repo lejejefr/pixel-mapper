@@ -3,11 +3,14 @@ package com.pixelmapper.persistence.adapters;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.stereotype.Repository;
+
 import com.pixelmapper.domain.TileMapContent;
 import com.pixelmapper.domain.TileMapContentRepoTemplate;
 import com.pixelmapper.persistence.repo.TileMapContentEntity;
 import com.pixelmapper.persistence.repo.TileMapContentJpaRepository;
 
+@Repository 
 public class TileMapContentRepoAdapter implements TileMapContentRepoTemplate {
     
     private final TileMapContentJpaRepository repo;
