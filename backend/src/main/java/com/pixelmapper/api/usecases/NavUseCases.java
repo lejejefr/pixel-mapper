@@ -111,4 +111,8 @@ public class NavUseCases {
             new UpdateMapDataRequest(request.getTitle(),request.getDescription())
         );
     }
+
+    public void deleteMap(UUID mapId) throws MapIDNotFoundException{
+        domain.eraseMap(mapId);
+    }
 }
