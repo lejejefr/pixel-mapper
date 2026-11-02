@@ -115,4 +115,9 @@ public class NavUseCases {
     public void deleteMap(UUID mapId) throws MapIDNotFoundException{
         domain.eraseMap(mapId);
     }
+
+    public MapDTO duplicateMap(UUID mapId) throws MapIDNotFoundException{
+        UUID copyId = domain.duplicateMap(mapId);
+        return getMap(copyId);
+    }
 }
