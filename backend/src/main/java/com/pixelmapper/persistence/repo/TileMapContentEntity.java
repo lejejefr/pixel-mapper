@@ -20,7 +20,7 @@ public class TileMapContentEntity {
 
     protected TileMapContentEntity() {}
 
-    TileMapContentEntity(
+    public TileMapContentEntity(
         UUID mapId,
         Map<Layer,byte[]> content
     ) {

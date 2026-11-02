@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.UUID;
 
 import lombok.Data;
+import lombok.AllArgsConstructor;
 
-@Data 
+@Data
+@AllArgsConstructor  
 public class TileMapData {
     private UUID mapId;
     private Date createdAt;

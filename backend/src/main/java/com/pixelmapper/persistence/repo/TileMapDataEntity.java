@@ -34,7 +34,7 @@ public class TileMapDataEntity {
 
     protected TileMapDataEntity(){}
 
-    TileMapDataEntity(
+    public TileMapDataEntity(
         UUID mapId,
         Date createdAt,
         Date lastUpdate,
