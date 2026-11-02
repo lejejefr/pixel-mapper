@@ -11,15 +11,15 @@ public class TileMapService {
         return list;
     }
 
-    public TileMap loadMapByID(UUID mapId){
+    public TileMapContent loadMap(UUID mapId){
         return null;
     }
 
-    public void saveMap(TileMap map){
+    public void saveMap(TileMapContent map){
 
     }
 
-    public void updateMapData(UUID mapID, TileMapData data){
+    public void updateMapData(UUID mapID, UpdateMapDataRequest request){
 
     }
 

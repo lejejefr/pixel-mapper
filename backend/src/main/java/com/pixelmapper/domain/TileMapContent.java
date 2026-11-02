@@ -1,11 +1,12 @@
 package com.pixelmapper.domain;
 
 import java.util.Map;
+import java.util.UUID;
 
 import lombok.Data;
 
 @Data 
-public class TileMap {
+public class TileMapContent {
+    private UUID mapId;
     private Map<Layer,byte[]> content;
-    private TileMapData data;
 }
