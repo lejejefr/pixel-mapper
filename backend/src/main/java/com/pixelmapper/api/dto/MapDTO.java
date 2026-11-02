@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data 
 @AllArgsConstructor 
-public class CreateMapResponseDTO {
+public class MapDTO {
     private UUID mapId;
     private Date createdAt;
     private Date lastUpDate;

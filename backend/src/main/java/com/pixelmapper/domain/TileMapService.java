@@ -24,7 +24,15 @@ public class TileMapService {
         return dataRepo.findAll();
     }
 
-    public TileMapContent loadMap(UUID mapId) throws MapIDNotFoundException{
+    public TileMapData loadMapData(UUID mapId) throws MapIDNotFoundException{
+        Optional<TileMapData> data = dataRepo.findByID(mapId);
+        if(data.isEmpty()){
+            throw new MapIDNotFoundException("Map id [" + mapId + "] not found in data ");
+        }
+        return data.get();
+    }
+
+    public TileMapContent loadMapContent(UUID mapId) throws MapIDNotFoundException{
         Optional<TileMapContent> content = contentRepo.findByID(mapId);
         if(content.isEmpty()){
             throw new MapIDNotFoundException("Map id [" + mapId + "] not found in content ");
