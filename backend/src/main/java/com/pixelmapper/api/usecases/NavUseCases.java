@@ -16,11 +16,13 @@ import com.pixelmapper.api.dto.CreateMapRequestDTO;
 import com.pixelmapper.api.dto.GetMapListResponseDTO;
 import com.pixelmapper.api.dto.MapDTO;
 import com.pixelmapper.api.dto.MapDataDTO;
+import com.pixelmapper.api.dto.UpdateMapDataRequestDTO;
 import com.pixelmapper.domain.Layer;
 import com.pixelmapper.domain.MapIDNotFoundException;
 import com.pixelmapper.domain.TileMapContent;
 import com.pixelmapper.domain.TileMapData;
 import com.pixelmapper.domain.TileMapService;
+import com.pixelmapper.domain.UpdateMapDataRequest;
 import com.pixelmapper.persistence.adapters.TileMapContentRepoAdapter;
 import com.pixelmapper.persistence.adapters.TileMapDataRepoAdapter;
 
@@ -100,6 +102,13 @@ public class NavUseCases {
             data.getWidth(),
             data.getHeight(),
             content.getContent()
+        );
+    }
+
+    public void updateMapData(UpdateMapDataRequestDTO request) throws MapIDNotFoundException{
+        domain.updateMapData(
+            request.getMapId(),
+            new UpdateMapDataRequest(request.getTitle(),request.getDescription())
         );
     }
 }
