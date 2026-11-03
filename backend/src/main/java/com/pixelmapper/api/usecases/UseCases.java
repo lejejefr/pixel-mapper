@@ -40,10 +40,10 @@ public class UseCases {
     public MapDTO createNewMap(CreateMapRequestDTO request){
         UUID mapId = UUID.randomUUID();
         Date now = Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
-        Map<Layer,byte[]> contentMap = new EnumMap<>(Layer.class);
+        Map<Layer,short[]> contentMap = new EnumMap<>(Layer.class);
 
         for(Layer layer : Layer.values()){
-            contentMap.put(layer,new byte[request.getWidth() * request.getHeight()]);
+            contentMap.put(layer,new short[request.getWidth() * request.getHeight()]);
         }
 
         TileMapContent content = new TileMapContent(mapId, contentMap);
@@ -96,7 +96,7 @@ public class UseCases {
         return new MapDTO(
             mapId,
             data.getCreatedAt(),
-            data.getlastUpdate(),
+            data.getLastUpdate(),
             data.getTitle(),
             data.getDescription(),
             data.getWidth(),

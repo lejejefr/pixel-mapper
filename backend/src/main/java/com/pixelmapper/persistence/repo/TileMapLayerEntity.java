@@ -16,20 +16,20 @@ public class TileMapLayerEntity {
     private TileMapLayerId id;
 
     @Column (nullable = false)
-    private byte[] content;
+    private short[] content;
 
     protected TileMapLayerEntity(){}
 
     public TileMapLayerEntity(
         UUID mapId,
         Layer layer,
-        byte[] content
+        short[] content
     ){
         this.id = new TileMapLayerId(mapId, layer);
         this.content = content;
     }
     
-    public byte[] getContent(){return this.content;}
+    public short[] getContent(){return this.content;}
     public UUID getMapId(){return this.id.mapId();}
     public Layer getLayer(){return this.id.layer();}
 }

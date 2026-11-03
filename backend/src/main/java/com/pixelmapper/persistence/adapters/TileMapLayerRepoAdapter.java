@@ -26,7 +26,7 @@ public class TileMapLayerRepoAdapter implements TileMapContentRepoTemplate {
     public Optional<TileMapContent> findByID(UUID mapId){
         List<TileMapLayerEntity> layers = this.repo.findByIdMapId(mapId);
         
-        Map<Layer,byte[]> content = new EnumMap<>(Layer.class);
+        Map<Layer,short[]> content = new EnumMap<>(Layer.class);
 
         for(TileMapLayerEntity layer : layers){
             content.put(layer.getLayer(),layer.getContent());

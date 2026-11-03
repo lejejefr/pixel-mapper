@@ -19,5 +19,5 @@ public class MapDTO {
     private String description;
     private int width;
     private int height;
-    private Map<Layer,byte[]> content;
+    private Map<Layer,short[]> content;
 }

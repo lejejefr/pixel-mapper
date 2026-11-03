@@ -10,5 +10,5 @@ import lombok.Data;
 @Data 
 public class SaveMapRequestDTO {
     private UUID mapId;
-    private Map<Layer,byte[]> content;
+    private Map<Layer,short[]> content;
 }

@@ -10,5 +10,5 @@ import lombok.Data;
 @AllArgsConstructor 
 public class TileMapContent {
     private UUID mapId;
-    private Map<Layer,byte[]> content;
+    private Map<Layer,short[]> content;
 }
