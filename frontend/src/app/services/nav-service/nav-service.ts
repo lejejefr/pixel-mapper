@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { CreateMapRequest } from '../../models/create-request';
 import { MapDataProps } from '../../models/map-data';
 import { ReconfigureRequest } from '../../models/reconfigure-request';
+import { ApiService } from '../api-service/api-service';
 
 @Service()
 export class NavService {
@@ -13,6 +14,7 @@ export class NavService {
   public readonly textSearch = signal<string>("");
 
   readonly router = inject(Router);
+  readonly api = inject(ApiService);
   readonly editMapDataService = inject(EditMapDataService);
   public mapListService = inject(MapListService);
 
@@ -57,12 +59,20 @@ export class NavService {
     this.router.navigateByUrl("nav-page")
   }
 
-  duplicate(): void{
-
+  async duplicate(): Promise<void>{
+    const id = this.selectedId();
+    if(id != null){
+      await this.mapListService.duplicate(id);
+      this.selectedId.set(null);
+    }
   }
 
-  erase(): void{
-
+  async erase(): Promise<void>{
+    const id = this.selectedId();
+    if(id != null){
+      await this.mapListService.delete(id);
+      this.selectedId.set(null);
+    }
   }
 
   async startEditing(): Promise<void>{

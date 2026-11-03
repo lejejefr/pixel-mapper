@@ -10,7 +10,17 @@ import { GetMapListResponseDTO } from '../../models/dto';
 @Service()
 export class MapListService {
   readonly api = inject(ApiService);
-  readonly mapList = signal<MapDataProps[]>([]);
+  readonly mapList = signal<MapDataProps[]>([
+    new MapDataProps(
+      crypto.randomUUID(),
+      new Date(),
+      new Date(),
+      "title",
+      "description",
+      32,
+      32
+    )
+  ]);
 
   async refresh(): Promise<void>{
     const result : MapDataProps[] = [];
@@ -50,6 +60,16 @@ export class MapListService {
       title:request.title,
       description:request.description
     })
+    await this.refresh();
+  }
+
+  async delete(mapId : string): Promise<void>{
+    await this.api.deleteMap(mapId);
+    await this.refresh();
+  }
+
+  async duplicate(mapId : string): Promise<void>{
+    await this.api.duplicateMap(mapId);
     await this.refresh();
   }
 }

@@ -20,4 +20,10 @@ export class NavPageHeader {
   onParamClick(): void{
     this.router.navigateByUrl('nav-page/reconfigure')
   }
+  onDuplicateClick(): void{
+    this.navService.duplicate();
+  }
+  onDeleteClick(): void{
+    this.navService.erase();
+  }
 }
