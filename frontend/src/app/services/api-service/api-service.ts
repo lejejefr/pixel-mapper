@@ -3,11 +3,6 @@ import { CreateMapRequestDTO, GetMapListResponseDTO, MapDTO, SaveMapRequestDTO, 
 
 @Service()
 export class ApiService {
-// "/api/edit"
-    /*@PostMapping ("/save")
-    public void saveMapContent(@RequestBody SaveMapRequestDTO request) throws MapIDNotFoundException{
-        useCases.saveMapContent(request);
-    }*/
   public async saveMapContent(request : SaveMapRequestDTO): Promise<void>{
     const response = await fetch('/api/edit/save',{
       method: 'POST',
@@ -19,13 +14,6 @@ export class ApiService {
       throw new Error("Map content could not be saved");
     }
   }
-
-// "/api/nav"
-   /*
-    @PostMapping ("/create")
-    public MapDTO createNewMap(@RequestBody CreateMapRequestDTO request){
-        return useCases.createNewMap(request);
-    }*/
 
   public async createNewMap(request : CreateMapRequestDTO): Promise<MapDTO>{
     const response = await fetch('/api/nav/create',{
@@ -41,12 +29,6 @@ export class ApiService {
     return response.json();
   }
 
-   /*
-    @GetMapping ("/list")
-    public GetMapListResponseDTO getMapList(){
-        return useCases.getMapList();
-    }*/
-
   public async getMapList(): Promise<GetMapListResponseDTO>{
     const response = await fetch('/api/nav/list',{
       method: 'GET',
@@ -59,11 +41,6 @@ export class ApiService {
 
     return response.json();
   }
-   /*
-    @PostMapping ("/get-map")
-    public MapDTO getMap(@RequestBody UUID mapId) throws MapIDNotFoundException{
-        return useCases.getMap(mapId);
-    }*/
 
   public async getMap(mapId : string): Promise<MapDTO>{
     const response = await fetch('/api/nav/get-map',{
@@ -78,11 +55,6 @@ export class ApiService {
 
     return response.json();
   }
-   /*
-    @PostMapping ("/update")
-    public void updateMapData(@RequestBody UpdateMapDataRequestDTO request) throws MapIDNotFoundException{
-        useCases.updateMapData(request);
-    }*/
 
   public async updateMapData(request : UpdateMapDataRequestDTO): Promise<void>{
     const response = await fetch('/api/nav/update',{
@@ -96,12 +68,6 @@ export class ApiService {
     }
   }
 
-   /*
-    @DeleteMapping ("/delete")
-    public void deleteMap(@RequestBody UUID mapId) throws MapIDNotFoundException{
-        useCases.deleteMap(mapId);
-    }*/
-
   public async deleteMap(mapId : string): Promise<void>{
     const response = await fetch('/api/nav/delete',{
       method: 'DELETE',
@@ -113,11 +79,6 @@ export class ApiService {
       throw new Error("Map could not be deleted");
     }
   }
-   /*
-    @PostMapping ("/duplicate")
-    public MapDTO duplicateMap(@RequestBody UUID mapId) throws MapIDNotFoundException{
-        return useCases.duplicateMap(mapId);
-    }**/
 
   public async duplicateMap(mapId : string): Promise<MapDTO>{
     const response = await fetch('/api/nav/duplicate',{

@@ -18,14 +18,19 @@ export class MapData {
   private layers!: Record<Layer, Uint8Array>;
 
   constructor(
-    public props : MapDataProps
+    public props : MapDataProps,
+    layers?: Record<Layer, Uint8Array>
   ) {
+    if(layers){
+      this.layers = layers;
+    }
+    else{
     this.layers = {
       terrain: new Uint8Array(this.props.height * this.props.width),
       vegetation: new Uint8Array(this.props.height * this.props.width),
       roads: new Uint8Array(this.props.height * this.props.width),
       cities: new Uint8Array(this.props.height * this.props.width),
-    }
+    }}
   }
 
   setCell(x : number, y : number, layer : Layer, value : number): void{

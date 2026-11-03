@@ -43,8 +43,8 @@ export class NavService {
 
   }
 
-  create(request : CreateMapRequest): void{
-    const id = this.mapListService.createMapData(request);
+  async create(request : CreateMapRequest): Promise<void>{
+    const id = await this.mapListService.createMapData(request);
     this.select(id);
     this.startEditing();
   }
@@ -65,14 +65,14 @@ export class NavService {
 
   }
 
-  startEditing(): void{
+  async startEditing(): Promise<void>{
     if(this.selectedId() === null){
       console.warn("no id selected");
       return;
     }
     for(let mapData of this.mapListService.mapList()){
       if (mapData.mapId === this.selectedId()){
-        this.editMapDataService.loadMap(this.mapListService.getMapData(mapData));
+        this.editMapDataService.loadMap(await this.mapListService.getMapData(mapData));
         this.router.navigateByUrl("edit-page");
       }
     }
