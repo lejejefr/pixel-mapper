@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
@@ -28,10 +27,10 @@ import com.pixelmapper.persistence.adapters.TileMapContentRepoAdapter;
 import com.pixelmapper.persistence.adapters.TileMapDataRepoAdapter;
 
 @Service 
-public class NavUseCases {
+public class UseCases {
     private final TileMapService domain;
 
-    NavUseCases(
+    UseCases(
         TileMapContentRepoAdapter contentRepo,
         TileMapDataRepoAdapter dataRepo
     ){
