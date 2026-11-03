@@ -23,15 +23,15 @@ import com.pixelmapper.domain.TileMapContent;
 import com.pixelmapper.domain.TileMapData;
 import com.pixelmapper.domain.TileMapService;
 import com.pixelmapper.domain.UpdateMapDataRequest;
-import com.pixelmapper.persistence.adapters.TileMapContentRepoAdapter;
 import com.pixelmapper.persistence.adapters.TileMapDataRepoAdapter;
+import com.pixelmapper.persistence.adapters.TileMapLayerRepoAdapter;
 
 @Service 
 public class UseCases {
     private final TileMapService domain;
 
     UseCases(
-        TileMapContentRepoAdapter contentRepo,
+        TileMapLayerRepoAdapter contentRepo,
         TileMapDataRepoAdapter dataRepo
     ){
         this.domain = new TileMapService(dataRepo, contentRepo);
