@@ -66,6 +66,14 @@ public class TileMapService {
         }
     }
 
+    public void saveMapContent(TileMapContent content) throws MapIDNotFoundException{
+        Optional<TileMapContent> existingContent = contentRepo.findByID(content.getMapId());
+        if(existingContent.isEmpty()){
+            throw new MapIDNotFoundException("Map id [" + content.getMapId() + "] not found in content ");
+        }
+        contentRepo.save(content);
+    }
+
     public UUID duplicateMap(UUID mapId) throws MapIDNotFoundException{
         Optional<TileMapData> optData = dataRepo.findByID(mapId);
         if(optData.isEmpty()){

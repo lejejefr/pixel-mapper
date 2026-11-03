@@ -16,6 +16,7 @@ import com.pixelmapper.api.dto.CreateMapRequestDTO;
 import com.pixelmapper.api.dto.GetMapListResponseDTO;
 import com.pixelmapper.api.dto.MapDTO;
 import com.pixelmapper.api.dto.MapDataDTO;
+import com.pixelmapper.api.dto.SaveMapRequestDTO;
 import com.pixelmapper.api.dto.UpdateMapDataRequestDTO;
 import com.pixelmapper.domain.Layer;
 import com.pixelmapper.domain.MapIDNotFoundException;
@@ -119,5 +120,9 @@ public class NavUseCases {
     public MapDTO duplicateMap(UUID mapId) throws MapIDNotFoundException{
         UUID copyId = domain.duplicateMap(mapId);
         return getMap(copyId);
+    }
+
+    public void saveMapContent(SaveMapRequestDTO request) throws MapIDNotFoundException{
+        domain.saveMapContent(new TileMapContent(request.getMapId(), request.getContent()));
     }
 }
