@@ -1,6 +1,8 @@
+import { SaveMapRequestDTO } from './../../models/dto';
 import { computed, effect, inject, Service, signal } from '@angular/core';
 import { Layer, MapData, MapDataProps } from '../../models/map-data';
 import { EditWindowControlService } from '../edit-window-control-service/edit-window-control-service';
+import { ApiService } from '../api-service/api-service';
 
 export const TILE_SIZE = {
   width: 16,
@@ -11,6 +13,7 @@ export const TILE_SIZE = {
 export class EditMapDataService {
 
   readonly windowControllerService = inject(EditWindowControlService);
+  readonly api = inject(ApiService);
 
   readonly map = signal<MapData>(new MapData(
     new MapDataProps(crypto.randomUUID(),
@@ -66,5 +69,12 @@ export class EditMapDataService {
 
   public getCell(x: number, y: number, layer : Layer): number{
     return this.map().getCell(x,y,layer);
+  }
+
+  save(): void{
+    this.api.saveMapContent({
+      mapId:this.map().props.mapId,
+      content:this.map().getContent(),
+    })
   }
 }

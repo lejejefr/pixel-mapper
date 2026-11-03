@@ -91,5 +91,4 @@ export class NavService {
   refreshList(): void{
     this.mapListService.refresh();
   }
-
 }

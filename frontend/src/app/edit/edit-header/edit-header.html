@@ -5,6 +5,12 @@
   (click)="onExitPressed()">
     <img src="/exit-icon.svg" alt="EXIT" />
   </button>
+  <button
+  type="button"
+  class="edit-header-icon" aria-label="Sauvegarder"
+  (click)="onSavePressed()">
+    <img src="/save-icon.svg" alt="SAVE" />
+  </button>
   @for(icon of HEADER_ICON_RECORD; track icon.layer){
     <app-edit-header-icon
     [layer]="icon.layer"

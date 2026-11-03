@@ -1,4 +1,6 @@
 import { Layer } from '../../models/map-data';
+import { EditMapDataService } from '../../services/edit-map-data-service/edit-map-data-service';
+import { NavService } from '../../services/nav-service/nav-service';
 import { EditHeaderIcon } from '../edit-header-icon/edit-header-icon';
 import { EditWindowControlService } from './../../services/edit-window-control-service/edit-window-control-service';
 import { Component, inject } from '@angular/core';
@@ -45,9 +47,12 @@ export class EditHeader {
   ]
 
   readonly editWindowControlService = inject(EditWindowControlService);
-
+  readonly editService = inject(EditMapDataService)
   onExitPressed(): void{
     this.editWindowControlService.onExitPressed();
+  }
+  onSavePressed(): void{
+    this.editService.save();
   }
 
 }

@@ -15,7 +15,7 @@ export class MapDataProps{
 }
 
 export class MapData {
-  private layers!: Record<Layer, Uint8Array>;
+  private layers: Record<Layer, Uint8Array>;
 
   constructor(
     public props : MapDataProps,
@@ -45,5 +45,8 @@ export class MapData {
       throw new Error("Out on bounds");
     }
     return this.layers[layer][x * this.props.height + y];
+  }
+  getContent(): Record<Layer, Uint8Array>{
+    return this.layers;
   }
 }
