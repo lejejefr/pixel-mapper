@@ -96,7 +96,7 @@ public class UseCases {
         return new MapDTO(
             mapId,
             data.getCreatedAt(),
-            data.getLastUpdate(),
+            data.getlastUpdate(),
             data.getTitle(),
             data.getDescription(),
             data.getWidth(),
